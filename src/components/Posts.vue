@@ -2,14 +2,14 @@
 <v-app id="example-4" left-fixed-sidebar sidebar-under-toolbar>
   <v-toolbar>
     <v-toolbar-side-icon @click.native.stop="nav4 = !nav4" class="hidden-sm-and-up"/>
-    <v-toolbar-title>Toolbar</v-toolbar-title>
+    <v-toolbar-title>Imgss's Blog</v-toolbar-title>
   </v-toolbar>
   <main>
     <v-sidebar v-model="nav4" class="mt-0 scroll-y" :mobileBreakPoint="576" fixed>
       <v-list>
         <v-list-item v-for="i in 8" :key="i">
           <v-list-tile>
-            <v-list-tile-title>Item {{ i }}</v-list-tile-title>
+            <v-list-tile-title>文章 {{ i }}</v-list-tile-title>
           </v-list-tile>
         </v-list-item>
       </v-list>
@@ -44,6 +44,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang='stylus' scoped>
+.toolbar
+    position: fixed
+    top: 0
 
 </style>
