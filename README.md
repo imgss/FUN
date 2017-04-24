@@ -1,6 +1,6 @@
 # fun
 
-> a blog base on vuejs
+> a blog base on vuejs+vuetify
 
 ## Build Setup
 
