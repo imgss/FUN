@@ -33,7 +33,7 @@ export default {
     }
   },
   beforeCreate () {
-    axios.get('/user?ID=12345')
+    axios.get('https://imgss.github.io/demo/maxRead/mergeAll.json')
     .then(function (response) {
       console.log(response)
     })
