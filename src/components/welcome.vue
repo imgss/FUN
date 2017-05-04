@@ -1,5 +1,7 @@
 <template>
+
   <div class="hello">
+  <a><router-link :to="{ name: 'posts' }">
     <h2>{{ msg }}</h2>
     <ul>
       <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
@@ -9,6 +11,8 @@
       <br>
       <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
     </ul>
+    </router-link>
+    </a>
   </div>
 </template>
 
@@ -53,6 +57,7 @@ li {
 }
 
 a {
-  color: #fbbc05;
+  color: white;
+  text-decoration: none;
 }
 </style>
