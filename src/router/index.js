@@ -10,12 +10,12 @@ export default new Router({
     {
       path: '/',
       name: 'list',
-      component: welcome
+      component: Posts
     },
     {
       path: '/posts/',
       name: 'posts',
-      component: Posts
+      component: welcome
     }
   ]
 })

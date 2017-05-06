@@ -1,10 +1,9 @@
 <template>
-<div class='posts'>
-  <v-card class="blue darken-1 white--text">
-    <v-card-text>
-      <div>{{ card_text }}</div>
-    </v-card-text>
-  </v-card>
+<div>
+<div v-for='card in cards'>
+<div>{{card.title}}</div>
+<div>{{card.text}}</div>
+ </div>
 </div>
 </template>
 
@@ -12,7 +11,16 @@
 export default {
   data () {
     return {
-      card_text: 'helloo'
+      cards: [{
+        title: '文章一',
+        text: 'xxxxxxxxxxxxxxxxxxxx33333333333333333333333333333333333333333333333333333333'
+      }, {
+        title: '文章二',
+        text: 'xxxxxxxxxxxxxxxxxxxx222222222222222222222222222222'
+      }, {
+        title: '文章三',
+        text: 'xxxxxxxxxxxxxxxxxxxx'
+      }]
     }
   }
 }
