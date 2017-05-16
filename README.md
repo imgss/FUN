@@ -1,6 +1,6 @@
 # fun
 
-> a blog base on vuejs+vuetify
+> a blog base on vuejs
 
 ## target
 

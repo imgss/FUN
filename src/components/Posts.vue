@@ -1,9 +1,15 @@
 <template>
-<div>
-<div v-for='card in cards'>
-<div>{{card.title}}</div>
-<div>{{card.text}}</div>
- </div>
+<div class='mdl-layout__container'>
+    <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
+      <main class="mdl-layout__content">
+          <div class='demo-blog__posts mdl-grid'>
+              <div class="mdl-card mdl-cell mdl-cell--12-col" v-for='card in cards'>
+                  <div class="mdl-card__title mdl-card__media mdl-color-text--grey-50">{{card.title}}</div>
+                  <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.text}}</div>
+              </div>
+          </div>
+    </main>
+  </div>
 </div>
 </template>
 
