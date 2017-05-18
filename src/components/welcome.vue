@@ -1,10 +1,11 @@
 <template>
 
   <div class="hello">
-  <a><router-link :to="{ name: 'posts' }">
-    <h2>{{ msg }}</h2>
+  <a>
+    <router-link :to="{ name: 'posts' }">
+      <h2>{{ msg }}</h2>
     </router-link>
-    </a>
+  </a>
   </div>
 </template>
 
