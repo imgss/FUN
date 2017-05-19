@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-             <p>{{post}}</p>
+             <p v-html='post'></p>
             </div>
             <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
             </div>
@@ -81,6 +81,8 @@
 
 <script>
 import axios from 'axios'
+import MarkdownIt from 'markdown-it'
+let md = new MarkdownIt()
 export default {
   data () {
     return {
@@ -105,7 +107,7 @@ export default {
       // replace getPost with your data fetching util / API wrapper
       getPost(this.$route.params.id, (post) => {
         this.loading = false
-        this.post = post
+        this.post = md.render(post.data)
       }, (err) => {
         console.log(err)
       })
