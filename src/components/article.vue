@@ -32,7 +32,7 @@
               </div>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-             
+             <p>{{post}}</p>
             </div>
             <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
             </div>
@@ -103,18 +103,14 @@ export default {
       this.error = this.post = null
       this.loading = true
       // replace getPost with your data fetching util / API wrapper
-      getPost(this.$route.params.id, (err, post) => {
+      getPost(this.$route.params.id, (post) => {
         this.loading = false
-        if (err) {
-          this.error = err.toString()
-        } else {
-          this.post = post
-        }
+        this.post = post
+      }, (err) => {
+        console.log(err)
       })
-      function getPost () {
-        axios.get('https://raw.githubusercontent.com/imgss/mdblog/master/1.md').then(function (response) {
-          console.log(response)
-        })
+      function getPost (id, callback) {
+        axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/${id}.md`).then(callback)
       }
     }
   }
