@@ -9,13 +9,13 @@
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3>{{title}}</h3>
+              <h3 >{{title.split(':')[1].trim()}}</h3>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div class="minilogo"></div>
               <div>
                 <strong>The Newist</strong>
-                <span>{{date}}</span>
+                <span>{{date.split(':')[1].trim()}}</span>
               </div>
               <div class="section-spacer"></div>
               <div class="meta__favorites">
@@ -104,7 +104,7 @@ export default {
   },
   methods: {
     fetchData () {
-      let re = /---([\s\S]+)---([\s\S]+)/
+      let re = /---\n([\s\S]+)\n---([\s\S]+)/
       this.error = this.post = null
       this.loading = true
       getPost(this.$route.params.id, (post) => {
