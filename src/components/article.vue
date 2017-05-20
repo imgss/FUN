@@ -9,13 +9,13 @@
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3>On the road again</h3>
+              <h3>{{title}}</h3>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div class="minilogo"></div>
               <div>
                 <strong>The Newist</strong>
-                <span>2 days ago</span>
+                <span>{{date}}</span>
               </div>
               <div class="section-spacer"></div>
               <div class="meta__favorites">
@@ -88,7 +88,9 @@ export default {
     return {
       loading: false,
       post: null,
-      error: null
+      error: null,
+      title: null,
+      date: null
     }
   },
   created () {
@@ -102,17 +104,27 @@ export default {
   },
   methods: {
     fetchData () {
+      let re = /---([\s\S]+)---([\s\S]+)/
       this.error = this.post = null
       this.loading = true
-      // replace getPost with your data fetching util / API wrapper
       getPost(this.$route.params.id, (post) => {
+        let postArr = re.exec(post.data)
+        let info = postArr[1]
+        console.log(info)
+        let [title, tags, date] = info.split('\n')
+        console.log(title, tags, date)
+        this.title = title
+        this.date = date
         this.loading = false
-        this.post = md.render(post.data)
+        this.post = md.render(postArr[2])
+        console.log(post.data)
       }, (err) => {
         console.log(err)
       })
-      function getPost (id, callback) {
-        axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/${id}.md`).then(callback)
+      function getPost (id, callback, errhandler) {
+        axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/${id}.md`)
+              .then(callback)
+              .catch(errhandler)
       }
     }
   }
