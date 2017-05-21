@@ -1,6 +1,8 @@
 <template>
+
 <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded" data-upgraded=",MaterialLayout">
       <main class="mdl-layout__content">
+
         <div class="demo-back">
           <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="index.html" title="go back" role="button" data-upgraded=",MaterialButton,MaterialRipple">
             <i class="material-icons" role="presentation">arrow_back</i>
@@ -9,7 +11,8 @@
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3 >{{title.split(':')[1].trim()}}</h3>
+              <loading v-if='loading'></loading>
+              <h3 v-else>{{title.split(':')[1].trim()}}</h3>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div class="minilogo"></div>
@@ -81,6 +84,7 @@
 
 <script>
 import axios from 'axios'
+import loading from '@/components/loading'
 import MarkdownIt from 'markdown-it'
 let md = new MarkdownIt()
 export default {
@@ -127,6 +131,9 @@ export default {
               .catch(errhandler)
       }
     }
+  },
+  components: {
+    loading
   }
 }
 
