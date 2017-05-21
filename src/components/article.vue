@@ -4,9 +4,11 @@
       <main class="mdl-layout__content">
 
         <div class="demo-back">
-          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="index.html" title="go back" role="button" data-upgraded=",MaterialButton,MaterialRipple">
-            <i class="material-icons" role="presentation">arrow_back</i>
-          <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
+          <router-link :to="{ name: 'posts' }">
+            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go back" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+              <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
+          </router-link>
         </div>
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
@@ -123,11 +125,9 @@ export default {
         this.post = md.render(postArr[2])
         console.log(post.data)
       }, (err) => {
-        console.log(this)
         this.loading = false
-        this.title = 'oops,这个文章可能被风吹走了'
+        this.title = ':oops,这个文章可能被风吹走了'
         console.log(err)
-        console.log('===============')
       })
       function getPost (id, callback, errhandler) {
         axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/${id}.md`)
@@ -144,6 +144,8 @@ export default {
 </script>
 
 
-<style>
+<style lang='stylus'>
+.mdl-button .material-icons
+  color: black
 
 </style>

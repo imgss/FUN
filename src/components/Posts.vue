@@ -32,7 +32,6 @@ export default {
   methods: {
     getPages () {
       axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/index.json`).then((data) => {
-        console.log(data)
         this.articles = data.data
       })
     }
@@ -44,6 +43,8 @@ export default {
 <style scoped lang='stylus'>
 .mdl-layout__container
   background: #6734ba
+  background-size: cover
+  background-repeat: no-repeat
 .title
   font-size: 34px
 .posts

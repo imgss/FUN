@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="xxx">
+    <transition :name="transitionName">
       <router-view></router-view>
     </transition>
   </div>
@@ -8,7 +8,22 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data () {
+    return {
+      transitionName: 'xxx'
+    }
+  },
+  watch: {
+    '$route' (to, from) {
+      console.log(to.path, from.path)
+      if ((from.path + to.path).length === 6) {
+        this.transitionName = 'up'
+      } else {
+        this.transitionName = 'xxx'
+      }
+    }
+  }
 }
 </script>
 
@@ -30,5 +45,14 @@ export default {
 .xxx-fade-enter,.xxx-leave-active {
   transform: translateX(10px);
   opacity: 0;
+}
+.up-enter-active {
+  transition: all .8s ease;
+}
+.up-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.up-fade-enter,.up-leave-active {
+  opacity: 20;
 }
 </style>
