@@ -18,7 +18,7 @@
               <div class="minilogo"></div>
               <div>
                 <strong>The Newist</strong>
-                <span>{{date.split(':')[1].trim()}}</span>
+                <span>{{date?date.split(':')[1].trim():''}}</span>
               </div>
               <div class="section-spacer"></div>
               <div class="meta__favorites">
@@ -123,7 +123,11 @@ export default {
         this.post = md.render(postArr[2])
         console.log(post.data)
       }, (err) => {
+        console.log(this)
+        this.loading = false
+        this.title = 'oops,这个文章可能被风吹走了'
         console.log(err)
+        console.log('===============')
       })
       function getPost (id, callback, errhandler) {
         axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/${id}.md`)
