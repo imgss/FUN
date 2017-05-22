@@ -88,7 +88,18 @@
 import axios from 'axios'
 import loading from '@/components/loading'
 import MarkdownIt from 'markdown-it'
-let md = new MarkdownIt()
+import hljs from 'highlight.js'
+let md = new MarkdownIt({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value
+      } catch (__) {}
+    }
+
+    return '' // use external default escaping
+  }
+})
 export default {
   data () {
     return {
@@ -151,14 +162,24 @@ export default {
   text-align: left
   max-width:750px
   margin: 10px
+  & p
+    max-width:750px
+    line-height:2em
   & h1
     color:#ff5607
   & h2
     color:#009788
   & h3
-    color:#f7412d
+    color:#122c4d
   & h4
     color:#5f7d8c
   & h5
     color:#89c541
+  & code
+    font-family: Consolas, Monaco, "Andale Mono", monospace;
+    line-height: 1em
+  & pre
+    background: #eff
+    max-width:720px
+    font-size:12px
 </style>
