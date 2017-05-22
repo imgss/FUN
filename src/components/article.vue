@@ -37,7 +37,7 @@
               </div>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-             <p v-html='post'></p>
+             <p class='article' id = "article" v-html='post'></p>
             </div>
             <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
             </div>
@@ -147,5 +147,18 @@ export default {
 <style lang='stylus'>
 .mdl-button .material-icons
   color: black
-
+#article
+  text-align: left
+  max-width:750px
+  margin: 10px
+  & h1
+    color:#ff5607
+  & h2
+    color:#009788
+  & h3
+    color:#f7412d
+  & h4
+    color:#5f7d8c
+  & h5
+    color:#89c541
 </style>
