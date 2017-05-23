@@ -156,12 +156,18 @@ export default {
 
 
 <style lang='stylus'>
+.mdl-layout__container
+  background:#212121
 .mdl-button .material-icons
   color: black
 #article
   text-align: left
   max-width:750px
   margin: 10px
+  & img
+    width:90%
+  & pre
+    line-height:1.25em
   & p
     max-width:750px
     line-height:2em
@@ -179,7 +185,8 @@ export default {
     font-family: Consolas, Monaco, "Andale Mono", monospace;
     line-height: 1em
   & pre
+    padding:5px 20px
     background: #eff
     max-width:720px
-    font-size:12px
+    font-size:14px
 </style>
