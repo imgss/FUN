@@ -164,6 +164,11 @@ export default {
   text-align: left
   max-width:750px
   margin: 10px
+  & blockquote
+    &:before,&:after
+      content:''
+    border-left:3px solid #353535
+    padding-left:10px
   & img
     width:90%
   & pre
@@ -173,6 +178,7 @@ export default {
     line-height:2em
   & h1
     color:#ff5607
+    text-align:center
   & h2
     color:#009788
   & h3
