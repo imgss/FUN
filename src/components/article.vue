@@ -107,7 +107,8 @@ export default {
       post: null,
       error: null,
       title: null,
-      date: null
+      date: null,
+      toc: null
     }
   },
   created () {
@@ -127,14 +128,13 @@ export default {
       getPost(this.$route.params.id, (post) => {
         let postArr = re.exec(post.data)
         let info = postArr[1]
-        console.log(info)
         let [title, tags, date] = info.split('\n')
-        console.log(title, tags, date)
+        console.log(tags)
         this.title = title
         this.date = date
         this.loading = false
+        this.toc = this.get_toc(postArr[2])
         this.post = md.render(postArr[2])
-        console.log(post.data)
       }, (err) => {
         this.loading = false
         this.title = ':oops,这个文章可能被风吹走了'
@@ -145,6 +145,19 @@ export default {
               .then(callback)
               .catch(errhandler)
       }
+    },
+    get_toc (md) {
+      let re = /^#+.+$/mg
+      let result = []
+      while (true) {
+        let match = re.exec(md)
+        if (!match) {
+          break
+        }
+        result.push(match[0])
+      }
+      console.log(result)
+      return result
     }
   },
   components: {
@@ -156,10 +169,10 @@ export default {
 
 
 <style lang='stylus'>
+.demo-back
+  position:fixed
 .mdl-layout__container
   background:#212121
-.mdl-button .material-icons
-  color: black
 #article
   text-align: left
   max-width:750px
