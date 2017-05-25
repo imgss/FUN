@@ -1,4 +1,4 @@
-# fun
+# FUN
 
 > a blog base on vuejs
 
