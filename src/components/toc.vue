@@ -1,9 +1,11 @@
 <template>
-<ul class='toc mdl-card mdl-shadow--4dp'>
-  <li v-for='header in headers'>{{header.text}}</li>
+<ul class='mdl-card mdl-shadow--4dp' id='toc'>
+  <li v-for='(header,i) in headers' :style='styleArr[i]'>
+    <a :href = '`#${header.text}`'>{{header.text}}</a>
+  </li>
 </ul>
 </template>
-
+ 
 <script>
 export default {
   name: 'toc',
@@ -11,13 +13,27 @@ export default {
     return {
     }
   },
-  props: ['headers']
+  props: ['headers'],
+  computed: {
+    styleArr: function () {
+      let headers = this.headers
+      return headers.map(header => {
+        return {
+          paddingLeft: `${header.class * 5}px`,
+          fontSize: header.class > 3 ? '14px' : '16px'
+        }
+      })
+    }
+  }
 }
 </script>
 
 <style lang='stylus'>
-.toc
-  width:200px
+#toc
+  width:240px
+  top:0px
+  bottom:0px
+  overflow:auto
   color:rgb(97,97,97)
   position:fixed
   list-style-type:none
