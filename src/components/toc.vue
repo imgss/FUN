@@ -1,7 +1,7 @@
 <template>
 <ul class='mdl-card mdl-shadow--4dp' id='toc'>
   <li v-for='(header,i) in headers' :style='styleArr[i]'>
-    <a :href = '`#${header.text}`'>{{header.text}}</a>
+    <a v-view = '`#${header.text}`'>{{header.text}}</a>
   </li>
 </ul>
 </template>
@@ -29,16 +29,23 @@ export default {
 </script>
 
 <style lang='stylus'>
+.demo-blog--blogpost div.demo-back
+  position:fixed
 #toc
-  width:240px
-  top:0px
+  left:-200px
+  padding-left:10px
+  padding: 10px
+  transition:all .3s
+  width:220px
+  top:30px
   bottom:0px
-  overflow:auto
+  overflow-y:auto
   color:rgb(97,97,97)
   position:fixed
   list-style-type:none
   background-color:#fff
+  &:hover
+    transform:translateX(200px)
   & li
     text-align:left
-
 </style>

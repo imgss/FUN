@@ -15,3 +15,13 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+Vue.directive('view', {
+  // When the bound element is inserted into the DOM...
+  inserted: function (el) {
+    // Focus the element
+    el.addEventListener('click', event => {
+      let select = event.target.innerHTML
+      console.log(select)
+    })
+  }
+})
