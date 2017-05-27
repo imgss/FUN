@@ -131,11 +131,12 @@ export default {
         let info = postArr[1]
         let [title, tags, date] = info.split('\n')
         console.log(tags)
+        let html = md.render(postArr[2])
         this.title = title
         this.date = date
         this.loading = false
         this.toc = this.get_toc(postArr[2])
-        this.post = md.render(postArr[2])
+        this.post = this.wrapID(html)
       }, (err) => {
         this.loading = false
         this.title = ':oops,这个文章可能被风吹走了'
@@ -166,6 +167,10 @@ export default {
       })
       console.log(result)
       return result
+    },
+    wrapID (html) {
+      let re = /<(h[1-6]).*?>([\S\s]*?)<\/\1>/gm
+      return html.replace(re, `<$1 id = '$2'>$2</$1>`)
     }
   },
   components: {
