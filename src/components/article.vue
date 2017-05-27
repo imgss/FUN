@@ -149,7 +149,7 @@ export default {
       }
     },
     get_toc (md) {
-      let re = /^#+.+$/mg
+      let re = /^#+\s(.+)$/mg
       let result = []
       while (true) {
         let match = re.exec(md)
@@ -159,10 +159,10 @@ export default {
         result.push(match[0])
       }
       result = result.map(header => {
-        let arr = header.split(' ')
+        /(#+)\s(.+)/.test(header)
         return {
-          class: arr[0].trim().length,
-          text: arr[1].trim()
+          class: RegExp.$1.length,
+          text: RegExp.$2
         }
       })
       console.log(result)

@@ -21,7 +21,8 @@ Vue.directive('view', {
     // Focus the element
     el.addEventListener('click', event => {
       let select = event.target.innerHTML
-      console.log(select)
+      console.log(`#${select}`, document.getElementById(select))
+      document.getElementById(select).scrollIntoView()
     })
   }
 })
