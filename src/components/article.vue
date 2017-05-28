@@ -1,8 +1,7 @@
 <template>
-
-<div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded" data-upgraded=",MaterialLayout">
+  <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded" data-upgraded=",MaterialLayout">
       <main class="mdl-layout__content">
-      <toc :headers = 'toc'></toc>
+        <toc :headers = 'toc'></toc>
         <div class="demo-back">
           <router-link :to="{ name: 'posts' }">
             <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go back" role="button" data-upgraded=",MaterialButton,MaterialRipple">
@@ -77,16 +76,19 @@
               <span class="visuallyhidden">share</span>
             </button>
           </div>
+          <toTop></toTop>
         </footer>
       </main>
       <div class="mdl-layout__obfuscator"></div>
-    </div></div>
+    </div>
+  </div>
 </template>
 
 
 <script>
 import axios from 'axios'
 import loading from '@/components/loading'
+import toTop from '@/components/toTop'
 import toc from '@/components/toc'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
@@ -174,7 +176,8 @@ export default {
   },
   components: {
     loading,
-    toc
+    toc,
+    toTop
   }
 }
 

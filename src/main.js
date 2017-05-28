@@ -19,7 +19,6 @@ new Vue({
 Vue.directive('view', {
   // When the bound element is inserted into the DOM...
   inserted: function (el) {
-    // Focus the element
     el.addEventListener('click', event => {
       let select = event.target.innerHTML
       scrollIntoView(document.getElementById(select), {
@@ -27,6 +26,20 @@ Vue.directive('view', {
         align: {top: 0.2}
       })
       // document.getElementById(select).scrollIntoView()
+    })
+  }
+})
+Vue.directive('top', {
+  // When the bound element is inserted into the DOM...
+  inserted: function scroll (el, binding) {
+    el.addEventListener('click', event => {
+      console.log('click')
+      let main = document.getElementsByTagName('main')[0]
+      if (main.scrollTop === 0) {
+        return
+      } else {
+        main.scrollTop = 0
+      }
     })
   }
 })
