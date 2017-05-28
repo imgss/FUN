@@ -149,7 +149,7 @@ export default {
       }
     },
     get_toc (md) {
-      let re = /^#+\s(.+)$/mg
+      let re = /^#{2,4}\s(.+)$/mg
       let result = []
       while (true) {
         let match = re.exec(md)
@@ -165,7 +165,6 @@ export default {
           text: RegExp.$2
         }
       })
-      console.log(result)
       return result
     },
     wrapID (html) {

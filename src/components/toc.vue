@@ -19,7 +19,7 @@ export default {
       let headers = this.headers
       return headers.map(header => {
         return {
-          paddingLeft: `${header.class * 5}px`,
+          paddingLeft: `${(header.class - 2) * 10}px`,
           fontSize: header.class > 3 ? '14px' : '16px'
         }
       })
@@ -48,4 +48,10 @@ export default {
     transform:translateX(200px)
   & li
     text-align:left
+    cursor:pointer
+    & a
+      color:#f66
+      &:hover 
+        color: #0086d4
+
 </style>
