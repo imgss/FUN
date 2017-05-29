@@ -145,7 +145,7 @@ export default {
         console.log(err)
       })
       function getPost (id, callback, errhandler) {
-        axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/${id}.md`)
+        axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/${id}.md`)
               .then(callback)
               .catch(errhandler)
       }
