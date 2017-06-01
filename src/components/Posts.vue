@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     getPages () {
-      axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/index.json`).then((data) => {
+      axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/index.json`).then((data) => {
         this.articles = data.data
       })
     }

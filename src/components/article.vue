@@ -2,6 +2,7 @@
   <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded" data-upgraded=",MaterialLayout">
       <main class="mdl-layout__content">
         <toc :headers = 'toc'></toc>
+        <tags :tags = 'tags'></tags>
         <div class="demo-back">
           <router-link :to="{ name: 'posts' }">
             <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go back" role="button" data-upgraded=",MaterialButton,MaterialRipple">
@@ -19,7 +20,7 @@
               <div class="minilogo"></div>
               <div>
                 <strong>The Newist</strong>
-                <span>{{date?date.split(':')[1].trim():''}}</span>
+                <span>{{date? date.split(':')[1].trim(): ''}}</span>
               </div>
               <div class="section-spacer"></div>
               <div class="meta__favorites">
@@ -90,6 +91,7 @@ import axios from 'axios'
 import loading from '@/components/loading'
 import toTop from '@/components/toTop'
 import toc from '@/components/toc'
+import tags from '@/components/tags'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 let md = new MarkdownIt({
@@ -99,7 +101,6 @@ let md = new MarkdownIt({
         return hljs.highlight(lang, str).value
       } catch (__) {}
     }
-
     return '' // use external default escaping
   }
 })
@@ -111,7 +112,8 @@ export default {
       error: null,
       title: null,
       date: null,
-      toc: null
+      toc: null,
+      tags: null
     }
   },
   created () {
@@ -138,6 +140,7 @@ export default {
         this.date = date
         this.loading = false
         this.toc = this.get_toc(postArr[2])
+        this.tags = this.get_tags(tags)
         this.post = this.wrapID(html)
       }, (err) => {
         this.loading = false
@@ -169,6 +172,9 @@ export default {
       })
       return result
     },
+    get_tags (tags) {
+      return tags.split(/\b/)
+    },
     wrapID (html) {
       let re = /<(h[1-6]).*?>([\S\s]*?)<\/\1>/gm
       return html.replace(re, `<$1 id = '$2'>$2</$1>`)
@@ -177,7 +183,8 @@ export default {
   components: {
     loading,
     toc,
-    toTop
+    toTop,
+    tags
   }
 }
 
