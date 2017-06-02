@@ -32,6 +32,7 @@ export default {
 .demo-blog--blogpost div.demo-back
   position:fixed
 #toc
+  z-index: 9
   left:-200px
   padding-left:10px
   padding: 10px

@@ -2,7 +2,6 @@
   <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded" data-upgraded=",MaterialLayout">
       <main class="mdl-layout__content">
         <toc :headers = 'toc'></toc>
-        <tags :tags = 'tags'></tags>
         <div class="demo-back">
           <router-link :to="{ name: 'posts' }">
             <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go back" role="button" data-upgraded=",MaterialButton,MaterialRipple">
@@ -12,17 +11,22 @@
         </div>
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+            <!--title-->
             <div class="mdl-card__media mdl-color-text--grey-50">
               <loading v-if='loading'></loading>
               <h3 v-else>{{title.split(':')[1].trim()}}</h3>
             </div>
+            <!--发布日期-->
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div class="minilogo"></div>
               <div>
                 <strong>The Newist</strong>
                 <span>{{date? date.split(':')[1].trim(): ''}}</span>
               </div>
-              <div class="section-spacer"></div>
+              <div class="section-spacer">
+              <!--tags-->
+                <tags :tags = 'tags'></tags>
+              </div>
               <div class="meta__favorites">
                 425 <i class="material-icons" role="presentation">favorite</i>
                 <span class="visuallyhidden">favorites</span>
@@ -36,10 +40,9 @@
                 <span class="visuallyhidden">share</span>
               </div>
             </div>
+            <!--文章-->
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
              <p class='article' id = "article" v-html='post'></p>
-            </div>
-            <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
             </div>
           </div>
 

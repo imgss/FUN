@@ -40,6 +40,7 @@ export default {
 <style lang='stylus'>
 .demo-up{
   position: fixed
+  z-index: 10
   transform: rotate(90 deg)
   top: 20px
   right: 50px
