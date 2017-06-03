@@ -1,5 +1,8 @@
 <template>
 <div>
+    <div style = 'vertical-align:middle;height:30px;line-height:30px;display:inline-block;margin-right:10px'>
+      <i role="presentation" class="material-icons" style='transform:rotate(-145deg)'>label</i>
+    </div>
     <div v-for='(tag, i) in tags' class = 'tag'>
             <a>{{ tag }}</a>
     </div>
@@ -22,17 +25,20 @@ export default {
   display: block
 .tag
     display: inline-block
-    border: 1px solid rgba(0, 0, 0, 0.54)
+    background: #9f9f9f
     border-radius: 4px
     padding: 0 10px
     line-height: 24px
     font-size: 12px
+    padding: 3px 10px
     text-decoration: none
     margin: 0 1px
+    margin-right: 6px
     margin-bottom: 6px
     & a
       cursor: pointer
-      color: rgba(0, 0, 0, 0.8)
-      &:hover
-        background: rgba(255, 255, 255, 0.8)
+      color: #fff
+    &:hover
+      background: #f90
+      color: white
 </style>
