@@ -28,7 +28,7 @@
                 <tags :tags = 'tags'></tags>
               </div>
               <div class="meta__favorites">
-                425 <i class="material-icons" role="presentation">favorite</i>
+                <i class="material-icons" role="presentation">favorite</i>
                 <span class="visuallyhidden">favorites</span>
               </div>
               <div>
