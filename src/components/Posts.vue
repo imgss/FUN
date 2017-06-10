@@ -9,7 +9,6 @@
                 </router-link>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.text}}</div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.postDate}}</div>
-
               </div>
 
           </div>
@@ -32,7 +31,7 @@ export default {
   methods: {
     getPages () {
       axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/index.json`).then((data) => {
-        this.articles = data.data
+        this.articles = data.data.values
       })
     }
   }
@@ -42,11 +41,13 @@ export default {
 
 <style scoped lang='stylus'>
 .mdl-layout__container
-  background: #6734ba
+  background: #eeeeee
   background-size: cover
   background-repeat: no-repeat
 .title
   font-size: 34px
+.mdl-cell
+  box-shadow: 3px 3px 7px #aaa
 .posts
   display: flex
   justify-content: center
