@@ -4,7 +4,7 @@
       <i role="presentation" class="material-icons" style='transform:rotate(-145deg)'>label</i>
     </div>
     <div v-for='(tag, i) in tags' class = 'tag'>
-            <a>{{ tag }}</a>
+            <router-link :to="{ path: '/tags', query:{tag: tag} }"  >{{ tag }}</router-link>
     </div>
 </div>
 </template>
