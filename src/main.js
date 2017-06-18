@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './vuex/store'
 import './assets/styles.css'
 import scrollIntoView from 'scroll-into-view'
 import './assets/mdl.grey.orange.min.css'
@@ -14,7 +15,8 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  store
 })
 Vue.directive('view', {
   // When the bound element is inserted into the DOM...

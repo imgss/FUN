@@ -25,7 +25,7 @@ export default {
   display: block
 .tag
     display: inline-block
-    background: #9f9f9f
+    background: rgb(97,97,97)
     border-radius: 4px
     padding: 0 10px
     line-height: 24px
@@ -38,6 +38,7 @@ export default {
     & a
       cursor: pointer
       color: #fff
+      text-decoration: none
     &:hover
       background: #f90
       color: white

@@ -10,7 +10,6 @@
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.text}}</div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.postDate}}</div>
               </div>
-
           </div>
     </main>
   </div>
@@ -19,6 +18,11 @@
 
 <script>
 import axios from 'axios'
+// import {
+//   mapState,
+//   mapGetters,
+//   mapMutations
+// } from 'vuex'
 export default {
   data () {
     return {
