@@ -1,10 +1,10 @@
 <template>
-<div>
+<div id='tags'>
     <div style = 'vertical-align:middle;height:30px;line-height:30px;display:inline-block;margin-right:10px'>
       <i role="presentation" class="material-icons" style='transform:rotate(-145deg)'>label</i>
     </div>
-    <div v-for='(tag, i) in tags' class = 'tag'>
-            <router-link :to="{ path: '/tags', query:{tag: tag} }"  >{{ tag }}</router-link>
+    <div v-for='(tag, i) in tags' >
+            <router-link class = 'tag' :to="{ path: '/tags', query:{tag: tag} }"  >{{ tag }}</router-link>
     </div>
 </div>
 </template>
@@ -23,6 +23,9 @@ export default {
 <style lang='stylus'>
 #tags
   display: block
+  user-select: none
+  & div
+    display: inline-block
 .tag
     display: inline-block
     background: rgb(97,97,97)
@@ -35,10 +38,6 @@ export default {
     margin: 0 1px
     margin-right: 6px
     margin-bottom: 6px
-    & a
-      cursor: pointer
-      color: #fff
-      text-decoration: none
     &:hover
       background: #f90
       color: white

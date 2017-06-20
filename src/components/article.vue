@@ -176,7 +176,7 @@ export default {
       return result
     },
     get_tags (tags) {
-      return tags.split(/\b/)
+      return tags.split(':')[1].trim().split(/\b/)
     },
     wrapID (html) {
       let re = /<(h[1-6]).*?>([\S\s]*?)<\/\1>/gm
