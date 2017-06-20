@@ -30,12 +30,27 @@ export default {
     }
   },
   created () {
-    this.getPages()
+    console.log(this.$route.query)
+    if (!Object.keys(this.$route.query).length) {
+      this.getPages()
+    } else {
+      this.getPagesOfTag()
+    }
   },
   methods: {
     getPages () {
       axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/index.json`).then((data) => {
         this.articles = data.data.values
+        this.$store.commit('saveArticles', data.data.values)
+      })
+    },
+    getPagesOfTag () {
+      let tag = this.$route.query.tag
+      console.log(tag)
+      this.articles = this.$store.state.articles.filter(article => {
+        if (article.tags.indexOf(tag) !== -1) {
+          return article
+        }
       })
     }
   }

@@ -20,10 +20,11 @@ let getters = {
 }
 
 let actions = {
-
 }
 let mutations = {
-
+  saveArticles (state, articles) {
+    state.articles = articles
+  }
 }
 export default new Vuex.Store({
   state,

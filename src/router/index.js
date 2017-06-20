@@ -23,6 +23,10 @@ export default new Router({
       path: '/article/:id',
       name: 'article',
       component: article
+    },
+    {
+      path: '/tags',
+      component: Posts
     }
   ]
 })
