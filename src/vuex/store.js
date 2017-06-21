@@ -24,6 +24,9 @@ let actions = {
 let mutations = {
   saveArticles (state, articles) {
     state.articles = articles
+  },
+  setCurrent (state, currentId) {
+    state.current = currentId
   }
 }
 export default new Vuex.Store({

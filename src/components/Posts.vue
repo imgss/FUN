@@ -3,7 +3,7 @@
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid'>
-              <div class="mdl-card mdl-cell mdl-cell--12-col" v-for='card in articles'>
+              <div class="mdl-card mdl-cell mdl-cell--12-col" @click="setCurrent(index)" v-for='(card,index) in articles'>
                 <router-link :to="card.id">
                   <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50">{{card.title}}</div>
                 </router-link>
@@ -52,6 +52,10 @@ export default {
           return article
         }
       })
+    },
+    setCurrent (index) {
+      console.log(index)
+      this.$store.commit('setCurrent', index)
     }
   }
 }
