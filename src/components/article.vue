@@ -47,15 +47,15 @@
           </div>
 
           <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-            <a href="index.html" class="demo-nav__button">
+            <a @click='toAricle("prev")' class="demo-nav__button">
               <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="material-icons">arrow_back</i>
               <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
-              Newer
+              上一篇
             </a>
             <div class="section-spacer"></div>
-            <a href="index.html" class="demo-nav__button">
-              Older
+            <a @click='toAricle("next")' class="demo-nav__button">
+              下一篇
               <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="material-icons">arrow_forward</i>
               <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
@@ -129,15 +129,15 @@ export default {
     '$route': 'fetchData'
   },
   methods: {
-    fetchData () {
+    fetchData (id) {
       let re = /---\n([\s\S]+)\n---([\s\S]+)/
       this.error = this.post = null
       this.loading = true
+      console.log(this.$route.params.id)
       getPost(this.$route.params.id, (post) => {
         let postArr = re.exec(post.data)
         let info = postArr[1]
         let [title, tags, date] = info.split('\n')
-        console.log(tags)
         let html = md.render(postArr[2])
         this.title = title
         this.date = date
@@ -181,6 +181,17 @@ export default {
     wrapID (html) {
       let re = /<(h[1-6]).*?>([\S\s]*?)<\/\1>/gm
       return html.replace(re, `<$1 id = '$2'>$2</$1>`)
+    },
+    toAricle (flag) {
+      let articleId
+      if (flag === 'next') {
+        articleId = this.$store.getters.nextArticle.id
+      } else {
+        articleId = this.$store.getters.prevArticle.id
+      }
+      this.$store.commit('setCurrent', articleId)
+      this.$router.push(`${articleId}`)
+      this.fetchData()
     }
   },
   components: {

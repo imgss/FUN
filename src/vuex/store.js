@@ -14,7 +14,14 @@ let getters = {
     if (next < state.articles.length) {
       return state.articles[next]
     } else {
-      return state.article[0]
+      return state.articles[0]
+    }
+  },
+  prevArticle: state => {
+    if (state.current === 0) {
+      return state.articles[state.articles.length - 1]
+    } else {
+      return state.articles[state.current - 1]
     }
   }
 }
@@ -26,7 +33,18 @@ let mutations = {
     state.articles = articles
   },
   setCurrent (state, currentId) {
-    state.current = currentId
+    if (typeof currentId === 'number') {
+      state.current = currentId
+    } else {
+      let articles = state.articles
+      let len = articles.length
+      for (let i = 0; i < len; i++) {
+        if (articles[i].id === currentId) {
+          state.current = i
+          return
+        }
+      }
+    }
   }
 }
 export default new Vuex.Store({
