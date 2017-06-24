@@ -2,8 +2,8 @@
 <div class='mdl-layout__container'>
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
-          <div class='demo-blog__posts mdl-grid tagWrapper' >
-            <tagcloud width='300' height='200' r='80' :tags='tags' v-if='!this.$route.query.tag'></tagcloud>
+          <div class='demo-blog__posts mdl-grid tagWrapper'>
+            <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--6-col-desktop' width='300' height='300' r='100' @tagClick='getPagesOfTag' :tags='tags' v-if='!this.$route.query.tag'></tagcloud>
             <span>{{this.$route.query.tag}}</span>
           </div>
           <div class='demo-blog__posts mdl-grid'>
@@ -47,9 +47,9 @@ export default {
         this.$store.commit('saveTags', data.data.allTags)
       })
     },
-    getPagesOfTag () {
-      let tag = this.$route.query.tag
+    getPagesOfTag (tag = this.$route.query.tag) {
       console.log(tag)
+      console.log(this.$store.state)
       this.articles = this.$store.state.articles.filter(article => {
         if (article.tags.indexOf(tag) !== -1) {
           return article

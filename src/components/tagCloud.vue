@@ -1,8 +1,8 @@
 <template>
     <div id='tagCloud'>
-        <svg :width='width' :height='height' @mousemove='listener($event)'>
-            <a v-for = 'tag in textTags' :href = 'tag.href'>
-                <text :x='tag.x' :y='tag.y' :font-size='height / 20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
+        <svg width='100%' height='100%' @mousemove='listener($event)'>
+            <a v-for = 'tag in textTags'>
+                <text :x='tag.x' :y='tag.y' @click='tagClick($event)' :font-size='height / 20 * (600 / (600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
             </a>
         </svg>
     </div>
@@ -46,16 +46,15 @@ export default{
         tag.x = this.CX + this.r * Math.sin(a) * Math.cos(b)
         tag.y = this.CY + this.r * Math.sin(a) * Math.sin(b)
         tag.z = this.r * Math.cos(a)
-        tag.href = 'https://imgss.github.o'
+        tag.href = `/tags?tag=${tag.text}`
         tags.push(tag)
       }
       this.textTags = tags
     },
     rotate () {
-      console.log(this.textTags)
       setInterval(() => {
         this.rotateX(this.speedX)
-        // this.rotateY(this.speedY)
+        this.rotateY(this.speedY)
       }, 17)
     },
     rotateX (angleX) {
@@ -83,6 +82,10 @@ export default{
       var y = event.clientY - this.CY
       this.speedX = x * 0.0001 > 0 ? Math.min(this.r * 0.00002, x * 0.0001) : Math.max(-this.r * 0.00002, x * 0.0001)
       this.speedY = y * 0.0001 > 0 ? Math.min(this.r * 0.00002, y * 0.0001) : Math.max(-this.r * 0.00002, y * 0.0001)
+    },
+    tagClick (evt) {
+      console.log(evt.target.innerHTML)
+      this.$emit('tagClick', evt.target.innerHTML)
     }
   }
 }
@@ -90,8 +93,8 @@ export default{
 
 <style lang='stylus'>
 #tagCloud
+  min-height: 300px
   &:before
-    content: '标签'
     font-size: 5em
     color: #ddd
     position: relative
