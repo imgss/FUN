@@ -3,6 +3,9 @@
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid'>
+            <tagcloud width='300' height='200' r='80' :tags='tags'></tagcloud>
+          </div>
+          <div class='demo-blog__posts mdl-grid'>
               <div class="mdl-card mdl-cell mdl-cell--12-col" @click="setCurrent(index)" v-for='(card,index) in articles'>
                 <router-link :to="card.id">
                   <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50">{{card.title}}</div>
@@ -18,14 +21,11 @@
 
 <script>
 import axios from 'axios'
-// import {
-//   mapState,
-//   mapGetters,
-//   mapMutations
-// } from 'vuex'
+import tagcloud from './tagCloud'
 export default {
   data () {
     return {
+      tags: null,
       articles: []
     }
   },
@@ -41,7 +41,9 @@ export default {
     getPages () {
       axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/index.json`).then((data) => {
         this.articles = data.data.values
+        this.tags = data.data.allTags
         this.$store.commit('saveArticles', data.data.values)
+        this.$store.commit('saveTags', data.data.allTags)
       })
     },
     getPagesOfTag () {
@@ -57,6 +59,9 @@ export default {
       console.log(index)
       this.$store.commit('setCurrent', index)
     }
+  },
+  components: {
+    tagcloud
   }
 }
 

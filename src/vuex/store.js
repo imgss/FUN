@@ -32,6 +32,9 @@ let mutations = {
   saveArticles (state, articles) {
     state.articles = articles
   },
+  saveTags (state, tags) {
+    state.tags = tags
+  },
   setCurrent (state, currentId) {
     if (typeof currentId === 'number') {
       state.current = currentId

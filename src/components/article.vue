@@ -223,6 +223,8 @@ export default {
     width:90%
   & pre
     line-height:1.25em
+    & span
+      line-height:2em
   & p
     max-width:750px
     line-height:2em
