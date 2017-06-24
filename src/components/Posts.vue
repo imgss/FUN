@@ -2,8 +2,9 @@
 <div class='mdl-layout__container'>
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
-          <div class='demo-blog__posts mdl-grid'>
-            <tagcloud width='300' height='200' r='80' :tags='tags'></tagcloud>
+          <div class='demo-blog__posts mdl-grid tagWrapper' >
+            <tagcloud width='300' height='200' r='80' :tags='tags' v-if='!this.$route.query.tag'></tagcloud>
+            <span>{{this.$route.query.tag}}</span>
           </div>
           <div class='demo-blog__posts mdl-grid'>
               <div class="mdl-card mdl-cell mdl-cell--12-col" @click="setCurrent(index)" v-for='(card,index) in articles'>
@@ -80,5 +81,6 @@ export default {
   display: flex
   justify-content: center
   width: 100%
-
+.tagWrapper
+  justify-content: center
 </style>

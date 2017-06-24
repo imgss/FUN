@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <div id='tagCloud'>
         <svg :width='width' :height='height' @mousemove='listener($event)'>
-            <a v-for = 'tag in textTags' href = 'tag.href'>
-                <text :x='tag.x' :y='tag.y' :font-size='20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
+            <a v-for = 'tag in textTags' :href = 'tag.href'>
+                <text :x='tag.x' :y='tag.y' :font-size='height / 20 * (600/(600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
             </a>
         </svg>
     </div>
@@ -28,11 +28,11 @@ export default{
   mounted () {
   },
   watch: {
-    'tags': 'textTags',
+    'tags': 'getTags',
     'textTags': 'rotate'
   },
   methods: {
-    textTags () {
+    getTags () {
       console.log(this.tags)
       let tags = []
       let tagsNum = this.tags.length
@@ -56,7 +56,7 @@ export default{
       setInterval(() => {
         this.rotateX(this.speedX)
         // this.rotateY(this.speedY)
-      }, 1700)
+      }, 17)
     },
     rotateX (angleX) {
       var cos = Math.cos(angleX)
@@ -81,13 +81,19 @@ export default{
     listener (event) {
       var x = event.clientX - this.CX
       var y = event.clientY - this.CY
-      this.speedX = x * 0.0001 > 0 ? Math.min(this.RADIUS * 0.00002, x * 0.0001) : Math.max(-this.RADIUS * 0.00002, x * 0.0001)
-      this.speedY = y * 0.0001 > 0 ? Math.min(this.RADIUS * 0.00002, y * 0.0001) : Math.max(-this.RADIUS * 0.00002, y * 0.0001)
+      this.speedX = x * 0.0001 > 0 ? Math.min(this.r * 0.00002, x * 0.0001) : Math.max(-this.r * 0.00002, x * 0.0001)
+      this.speedY = y * 0.0001 > 0 ? Math.min(this.r * 0.00002, y * 0.0001) : Math.max(-this.r * 0.00002, y * 0.0001)
     }
   }
 }
 </script>
 
-<style>
+<style lang='stylus'>
+#tagCloud
+  &:before
+    content: '标签'
+    font-size: 5em
+    color: #ddd
+    position: relative
 
 </style>
