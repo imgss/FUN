@@ -69,14 +69,18 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
+.mdl-card__supporting-text.meta.mdl-color-text--grey-600
+  text-align: left
+  line-height: 2em
 .mdl-layout__container
   background: #eeeeee
+  background:url('../assets/main_bg.jpg');
   background-size: cover
   background-repeat: no-repeat
 .title
   font-size: 34px
 .mdl-cell
-  box-shadow: 3px 3px 7px #aaa
+  box-shadow: 3px 3px 7px #777
 .posts
   display: flex
   justify-content: center

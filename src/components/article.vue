@@ -210,6 +210,8 @@ export default {
   position:fixed
 .mdl-layout__container
   background:#212121
+  background:url('../assets/article.jpg')
+  background-size: cover
 #article
   text-align: left
   max-width:750px
@@ -221,7 +223,9 @@ export default {
     padding-left:10px
   & img
     width:90%
+    display:block
   & pre
+    overflow-x:auto
     line-height:1.25em
     & span
       line-height:2em
