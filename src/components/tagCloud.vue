@@ -2,7 +2,7 @@
     <div id='tagCloud'>
         <svg width='100%' height='100%' @mousemove='listener($event)'>
             <a v-for = 'tag in textTags'>
-                <text :x='tag.x' :y='tag.y' @click='tagClick($event)' :font-size='height / 20 * (600 / (600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
+                <text :x='tag.x' :y='tag.y' @click='tagClick($event)' :font-size='14 || height / 20 * (600 / (600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
             </a>
         </svg>
     </div>
@@ -14,18 +14,14 @@ export default{
     return {
       speedX: Math.PI / 360,
       speedY: Math.PI / 360,
-      textTags: null
-    }
-  },
-  computed: {
-    CX () {
-      return this.width / 2
-    },
-    CY () {
-      return this.height / 2
+      textTags: null,
+      CX: 0,
+      CY: 0
     }
   },
   mounted () {
+    this.CX = parseInt(getComputedStyle(document.querySelector('svg')).width) / 2
+    this.CY = parseInt(getComputedStyle(document.querySelector('svg')).height) / 2
   },
   watch: {
     'tags': 'getTags',

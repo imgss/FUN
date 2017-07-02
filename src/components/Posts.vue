@@ -3,7 +3,8 @@
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid tagWrapper'>
-            <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--6-col-desktop' width='300' height='300' r='100' @tagClick='getPagesOfTag' :tags='tags' v-if='!this.$route.query.tag'></tagcloud>
+            <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags' v-if='!this.$route.query.tag'></tagcloud>
+            <div class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--8-col-desktop meta about'><h1>about</h1>这个人很懒，什么都没留下。</div>
             <span>{{this.$route.query.tag}}</span>
           </div>
           <div class='demo-blog__posts mdl-grid'>
@@ -85,6 +86,4 @@ export default {
   display: flex
   justify-content: center
   width: 100%
-.tagWrapper
-  justify-content: center
 </style>
