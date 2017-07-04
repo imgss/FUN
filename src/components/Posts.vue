@@ -15,7 +15,11 @@
                   <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50">{{card.title}}</div>
                 </router-link>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.text}}</div>
-                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.postDate}}</div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                  <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="#000000" d="M14,14H7V16H14M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M17,10H7V12H17V10Z" />
+                  </svg>{{card.postDate.replace('date:','')}}
+                </div>
               </div>
           </div>
     </main>
@@ -51,8 +55,6 @@ export default {
       })
     },
     getPagesOfTag (tag = this.$route.query.tag) {
-      console.log(tag)
-      console.log(this.$store.state)
       this.articles = this.$store.state.articles.filter(article => {
         if (article.tags.indexOf(tag) !== -1) {
           return article
@@ -72,6 +74,9 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
+svg
+  width:25px
+  height:20px
 .mdl-card__supporting-text.meta.mdl-color-text--grey-600
   text-align: left
   line-height: 2em
