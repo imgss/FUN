@@ -83,6 +83,7 @@ svg
 .mdl-layout__container
   background: #eeeeee
   background:url('../assets/main_bg.jpg');
+  /*background:-webkit-linear-gradient(top,#3c3382 20%,#79547d 80%,#f39746)*/
   background-size: cover
   background-repeat: no-repeat
 .title

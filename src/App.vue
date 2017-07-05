@@ -26,6 +26,14 @@ export default {
 </script>
 
 <style>
+@media screen and (max-width:800px){
+  .mdl-card__supporting-text.meta.mdl-color-text--grey-600 {
+      font-size: 1.5rem;
+  }
+  .mdl-card__title.title.mdl-card__media.mdl-color-text--grey-50{
+    font-size:3rem
+  }
+}
 #app {
   display: flex;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

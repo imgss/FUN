@@ -212,7 +212,7 @@ export default {
 .demo-back
   position:fixed
 .mdl-layout__container
-  background:#212121
+  background:#cccccc
   background:url('../assets/article.jpg')
   background-size: cover
 #article
@@ -240,6 +240,7 @@ export default {
     text-align:center
   & h2
     color:#009788
+    ransition:all .3s
   & h3
     color:#122c4d
   & h4
