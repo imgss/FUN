@@ -10,9 +10,10 @@
             <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
           </div>
           <div class='demo-blog__posts mdl-grid'>
-              <div class="mdl-card mdl-cell mdl-cell--12-col" @click="setCurrent(index)" v-for='(card,index) in articles'>
+            <transition-group name='fade'>
+              <div class="mdl-card mdl-cell mdl-cell--12-col" :style='{top:-100*index+"px"}' @click="setCurrent(index)" v-for='(card,index) in articles' v-bind:key="index">
                 <router-link :to="card.id">
-                  <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50">{{card.title}}</div>
+                  <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50" :style='{backgroundColor:colors[index]}'>{{card.title}}</div>
                 </router-link>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.text}}</div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
@@ -21,6 +22,7 @@
                   </svg>{{card.postDate.replace('date:','')}}
                 </div>
               </div>
+            </transition-group>
           </div>
     </main>
   </div>
@@ -34,7 +36,8 @@ export default {
   data () {
     return {
       tags: null,
-      articles: []
+      articles: [],
+      colors: []
     }
   },
   created () {
@@ -46,11 +49,24 @@ export default {
     }
   },
   methods: {
+    getColor () {
+      return '#' + Math.random().toString(16).slice(2, 8)
+    },
     getPages () {
       axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/index.json`).then((data) => {
-        this.articles = data.data.values
+        let articles = data.data.values
+        for (let i = 0, len = articles.length; i < len; i++) {
+          this.colors.push(this.getColor())
+        }
+        let loop = setInterval(() => {
+          if (articles.length) {
+            this.articles.push(articles.shift())
+          } else {
+            clearInterval(loop)
+          }
+        }, 500)
         this.tags = data.data.allTags
-        this.$store.commit('saveArticles', data.data.values)
+        this.$store.commit('saveArticles', this.articles)
         this.$store.commit('saveTags', data.data.allTags)
       })
     },
@@ -88,12 +104,20 @@ svg
   background-repeat: no-repeat
 .title
   font-size: 34px
-.mdl-cell
-  box-shadow: 3px 3px 7px #777
+.mdl-card.mdl-cell.mdl-cell--12-col
+  box-shadow: 0px 0px 30px #333
 .posts
   display: flex
   justify-content: center
   width: 100%
 .tagWrapper
   justify-content: center
+.mdl-card.mdl-cell.mdl-cell--12-col:hover
+  z-index:999
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0
+}
 </style>

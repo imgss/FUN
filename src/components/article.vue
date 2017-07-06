@@ -1,10 +1,10 @@
 <template>
-  <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded" data-upgraded=",MaterialLayout">
+  <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
         <toc :headers = 'toc'></toc>
         <div class="demo-back">
           <router-link :to="{ name: 'posts' }">
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go back" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go back" role="button">
               <i class="material-icons" role="presentation">arrow_back</i>
             <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></a>
           </router-link>
@@ -65,26 +65,6 @@
             </a>
           </nav>
         </div>
-        <footer class="mdl-mini-footer">
-          <div class="mdl-mini-footer--left-section">
-            <button class="mdl-mini-footer--social-btn social-btn social-btn__twitter">
-              <span class="visuallyhidden">Twitter</span>
-            </button>
-            <button class="mdl-mini-footer--social-btn social-btn social-btn__blogger">
-              <span class="visuallyhidden">Facebook</span>
-            </button>
-            <button class="mdl-mini-footer--social-btn social-btn social-btn__gplus">
-              <span class="visuallyhidden">Google Plus</span>
-            </button>
-          </div>
-          <div class="mdl-mini-footer--right-section">
-            <button class="mdl-mini-footer--social-btn social-btn__share">
-              <i class="material-icons" role="presentation">share</i>
-              <span class="visuallyhidden">share</span>
-            </button>
-          </div>
-          <toTop></toTop>
-        </footer>
       </main>
       <div class="mdl-layout__obfuscator"></div>
     </div>
