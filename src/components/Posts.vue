@@ -11,7 +11,7 @@
           </div>
           <div class='demo-blog__posts mdl-grid'>
             <transition-group name='fade'>
-              <div class="mdl-card mdl-cell mdl-cell--12-col" :style='{top:-100*index+"px"}' @click="setCurrent(index)" v-for='(card,index) in articles' v-bind:key="index">
+              <div class="mdl-card mdl-cell mdl-cell--12-col" :style='styles[index]' @mouseenter = "hover(index)" @mouseleave = "hover(index)" @click="setCurrent(index)" v-for='(card,index) in articles' v-bind:key="index">
                 <router-link :to="card.id">
                   <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50" :style='{backgroundColor:colors[index]}'>{{card.title}}</div>
                 </router-link>
@@ -37,26 +37,23 @@ export default {
     return {
       tags: null,
       articles: [],
-      colors: []
+      colors: [],
+      styles: []
     }
   },
-  created () {
+  computed: {
+    pixs () {
+      return this.styles.map(style => style + 'px')
+    }
+  },
+  beforeCreate () {
     console.log(this.$route.query)
     if (!Object.keys(this.$route.query).length) {
-      this.getPages()
-    } else {
-      this.getPagesOfTag()
-    }
-  },
-  methods: {
-    getColor () {
-      return '#' + Math.random().toString(16).slice(2, 8)
-    },
-    getPages () {
       axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/index.json`).then((data) => {
         let articles = data.data.values
         for (let i = 0, len = articles.length; i < len; i++) {
           this.colors.push(this.getColor())
+          this.styles.push({top: -100 * i + 'px'})
         }
         let loop = setInterval(() => {
           if (articles.length) {
@@ -69,6 +66,26 @@ export default {
         this.$store.commit('saveArticles', this.articles)
         this.$store.commit('saveTags', data.data.allTags)
       })
+    } else {
+      this.getPagesOfTag()
+    }
+  },
+  methods: {
+    hover (index) {
+      let top = parseInt(this.styles[index].top)
+      if (top % 100 === 0) {
+        this.styles[index].top = top - 80 + 'px'
+        console.log(this.styles)
+      } else {
+        this.styles[index].top = top + 80 + 'px'
+        console.log(this.styles)
+      }
+    },
+    getColor () {
+      return '#' + Math.random().toString(16).slice(2, 8)
+    },
+    getPages () {
+
     },
     getPagesOfTag (tag = this.$route.query.tag) {
       this.articles = this.$store.state.articles.filter(article => {
@@ -112,8 +129,9 @@ svg
   width: 100%
 .tagWrapper
   justify-content: center
-.mdl-card.mdl-cell.mdl-cell--12-col:hover
-  z-index:999
+.mdl-card.mdl-cell.mdl-cell--12-col {
+    transition: top .3s ease;
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }

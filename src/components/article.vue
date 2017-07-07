@@ -67,6 +67,7 @@
         </div>
       </main>
       <div class="mdl-layout__obfuscator"></div>
+      <toTop></toTop>
     </div>
   </div>
 </template>
