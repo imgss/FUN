@@ -71,6 +71,7 @@ export default {
   },
   methods: {
     hover (index) {
+      this.styles[index].transitionDelay = '0s'
       let top = parseInt(this.styles[index].top)
       if (top % 100 === 0) {
         this.styles[index].top = top - 80 + 'px'
