@@ -16,6 +16,9 @@ export default {
     return {
       msg: `Welcome to Imgss' Blog`
     }
+  },
+  mounted () {
+    setTimeout(() => this.$router.push({name: 'posts'}), 3000)
   }
 }
 </script>

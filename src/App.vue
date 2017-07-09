@@ -1,6 +1,8 @@
 <template>
   <div id="app">
+    <transition name='xxx' mode='out-in'>
       <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -49,7 +51,7 @@ export default {
   transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 .xxx-fade-enter,.xxx-leave-active {
-  transform: translateX(10px);
+  transform: translateY(-1000px);
   opacity: 0;
 }
 .up-enter-active {

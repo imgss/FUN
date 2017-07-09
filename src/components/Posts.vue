@@ -32,6 +32,7 @@
 <script>
 import axios from 'axios'
 import tagcloud from './tagCloud'
+import {root} from '../config.json'
 export default {
   data () {
     return {
@@ -46,10 +47,27 @@ export default {
       return this.styles.map(style => style + 'px')
     }
   },
-  beforeCreate () {
-    console.log(this.$route.query)
+  created () {
     if (!Object.keys(this.$route.query).length) {
-      axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/index.json`).then((data) => {
+      this.getPages()
+    } else {
+      this.getPagesOfTag()
+    }
+  },
+  methods: {
+    hover (index) {
+      let top = parseInt(this.styles[index].top)
+      if (top % 100 === 0) {
+        this.styles[index].top = top - 80 + 'px'
+      } else {
+        this.styles[index].top = top + 80 + 'px'
+      }
+    },
+    getColor () {
+      return '#' + Math.random().toString(16).slice(2, 8)
+    },
+    getPages () {
+      axios.get(`${root}index.json`).then((data) => {
         let articles = data.data.values
         for (let i = 0, len = articles.length; i < len; i++) {
           this.colors.push(this.getColor())
@@ -61,31 +79,11 @@ export default {
           } else {
             clearInterval(loop)
           }
-        }, 500)
+        }, 100)
         this.tags = data.data.allTags
         this.$store.commit('saveArticles', this.articles)
         this.$store.commit('saveTags', data.data.allTags)
       })
-    } else {
-      this.getPagesOfTag()
-    }
-  },
-  methods: {
-    hover (index) {
-      let top = parseInt(this.styles[index].top)
-      if (top % 100 === 0) {
-        this.styles[index].top = top - 80 + 'px'
-        console.log(this.styles)
-      } else {
-        this.styles[index].top = top + 80 + 'px'
-        console.log(this.styles)
-      }
-    },
-    getColor () {
-      return '#' + Math.random().toString(16).slice(2, 8)
-    },
-    getPages () {
-
     },
     getPagesOfTag (tag = this.$route.query.tag) {
       this.articles = this.$store.state.articles.filter(article => {
@@ -133,9 +131,9 @@ svg
     transition: top .3s ease;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s
+  transition: all 1s ease-out
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-  opacity: 0
+.fade-enter, .fade-leave /* .fade-leave-active in <2.1.8 */ {
+  transform: translateX(80px);
 }
 </style>

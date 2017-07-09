@@ -81,6 +81,7 @@ import toc from '@/components/toc'
 import tags from '@/components/tags'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
+import {root} from '../config.json'
 let md = new MarkdownIt({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
@@ -135,7 +136,7 @@ export default {
         console.log(err)
       })
       function getPost (id, callback, errhandler) {
-        axios.get(`https://raw.githubusercontent.com/imgss/mdblog/master/posts/${id}.md`)
+        axios.get(`${root}${id}.md`)
               .then(callback)
               .catch(errhandler)
       }
