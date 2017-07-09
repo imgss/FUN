@@ -53,25 +53,26 @@ export default {
   },
   created () {
     if (!Object.keys(this.$route.query).length) {
-      let articles = this.$store.state.articles
-      if (articles) {
-        for (let i = 0, len = articles.length; i < len; i++) {
-          this.colors.push(this.getColor())
-          this.styles.push({top: -100 * i + 'px', transitionDelay: 0.1 * i + 's'})
-        }
-        this.$store.commit('saveColors', this.colors)
-        this.articles = articles
-        this.tags = this.$store.state.tags
-      } else {
-        this.getPages()
-      }
+      // let articles = this.$store.state.articles
+      // if (articles) {
+      //   for (let i = 0, len = articles.length; i < len; i++) {
+      //     this.colors.push(this.getColor())
+      //     this.styles.push({top: -100 * i + 'px', transitionDelay: 0.1 * i + 's'})
+      //   }
+      //   this.$store.commit('saveColors', this.colors)
+      //   this.articles = articles
+      //   this.tags = []
+      //   this.tags = this.$store.state.tags
+      // } else {
+      this.getPages()
+      // }
     } else {
       this.getPagesOfTag()
     }
   },
   methods: {
     hover (index) {
-      this.styles[index].transitionDelay = '0s'
+      this.styles[index].transitionDelay = '0s' // 将之前的过渡延迟去掉，防止影响hover效果
       let top = parseInt(this.styles[index].top)
       if (top % 100 === 0) {
         this.styles[index].top = top - 80 + 'px'
@@ -96,7 +97,7 @@ export default {
         this.$store.commit('saveTags', data.data.allTags)
       })
     },
-    getPagesOfTag (tag = this.$route.query.tag) {
+    getPagesOfTag (tag = this.$route.query.tag) { // 响应tag点击事件
       this.articles = this.$store.state.articles.filter(article => {
         if (article.tags.indexOf(tag) !== -1) {
           return article

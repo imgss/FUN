@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name='xxx' mode='out-in'>
+    <transition :name='transitionName' mode='out-in'>
       <router-view></router-view>
     </transition>
   </div>
@@ -17,10 +17,10 @@ export default {
   watch: {
     '$route' (to, from) {
       console.log(to.path, from.path)
-      if ((from.path + to.path).length === 6) {
-        this.transitionName = 'up'
-      } else {
+      if (from.path === '/') {
         this.transitionName = 'xxx'
+      } else {
+        this.transitionName = ''
       }
     }
   }
