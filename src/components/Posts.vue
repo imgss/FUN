@@ -3,7 +3,9 @@
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid tagWrapper' v-if='!this.$route.query.tag'>
+            <!--标签云-->
             <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
+            <!--关于，个人留言-->
             <div class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--8-col-desktop meta about'><h1>about</h1>这个人很懒，什么都没留下。</div>
           </div>
           <div class='demo-blog__posts mdl-grid tagWrapper' v-else>
@@ -11,6 +13,7 @@
           </div>
           <div class='demo-blog__posts mdl-grid'>
             <transition-group name='fade'>
+              <!--文章摘要-->
               <div class="mdl-card mdl-cell mdl-cell--12-col" :style='styles[index]' @mouseenter = "hover(index)" @mouseleave = "hover(index)" @click="setCurrent(index)" v-for='(card,index) in articles' v-bind:key="index">
                 <router-link :to="card.id">
                   <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50" :style='{backgroundColor:colors[index]}'>{{card.title}}</div>
@@ -71,15 +74,16 @@ export default {
         let articles = data.data.values
         for (let i = 0, len = articles.length; i < len; i++) {
           this.colors.push(this.getColor())
-          this.styles.push({top: -100 * i + 'px'})
+          this.styles.push({top: -100 * i + 'px', transitionDelay: 0.1 * i + 's'})
         }
-        let loop = setInterval(() => {
-          if (articles.length) {
-            this.articles.push(articles.shift())
-          } else {
-            clearInterval(loop)
-          }
-        }, 100)
+        this.articles = articles
+        // let loop = setInterval(() => {
+        //   if (articles.length) {
+        //     this.articles.push(articles.shift())
+        //   } else {
+        //     clearInterval(loop)
+        //   }
+        // }, 1000)
         this.tags = data.data.allTags
         this.$store.commit('saveArticles', this.articles)
         this.$store.commit('saveTags', data.data.allTags)
@@ -113,7 +117,7 @@ svg
   line-height: 2em
 .mdl-layout__container
   background: #eeeeee
-  background:url('../assets/main_bg.jpg');
+  /*background:url('../assets/main_bg.jpg');*/
   /*background:-webkit-linear-gradient(top,#3c3382 20%,#79547d 80%,#f39746)*/
   background-size: cover
   background-repeat: no-repeat
@@ -128,12 +132,12 @@ svg
 .tagWrapper
   justify-content: center
 .mdl-card.mdl-cell.mdl-cell--12-col {
-    transition: top .3s ease;
+    transition: all .3s ease;
 }
 .fade-enter-active, .fade-leave-active {
   transition: all 1s ease-out
 }
-.fade-enter, .fade-leave /* .fade-leave-active in <2.1.8 */ {
-  transform: translateX(80px);
+.fade-enter, .fade-leave {
+  transform: translateX(800px);
 }
 </style>

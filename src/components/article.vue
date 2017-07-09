@@ -1,5 +1,5 @@
 <template>
-  <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
+  <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
         <toc :headers = 'toc'></toc>
         <div class="demo-back">
