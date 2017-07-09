@@ -6,7 +6,7 @@
             <!--标签云-->
             <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
             <!--关于，个人留言-->
-            <div class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--8-col-desktop meta about'><h1>about</h1>这个人很懒，什么都没留下。</div>
+            <div class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--8-col-desktop meta about'><h1>about</h1>{{about}}</div>
           </div>
           <div class='demo-blog__posts mdl-grid tagWrapper' v-else>
             <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
@@ -15,15 +15,15 @@
             <transition-group name='fade'>
               <!--文章摘要-->
               <div class="mdl-card mdl-cell mdl-cell--12-col" :style='styles[index]' @mouseenter = "hover(index)" @mouseleave = "hover(index)" @click="setCurrent(index)" v-for='(card,index) in articles' v-bind:key="index">
-                <router-link :to="card.id">
+                <router-link :to="{path: card.id}">
                   <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50" :style='{backgroundColor:colors[index]}'>{{card.title}}</div>
+                  <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.text}}</div>
+                  <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                          <path fill="#000000" d="M14,14H7V16H14M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M17,10H7V12H17V10Z" />
+                    </svg>{{card.postDate.replace('date:','')}}
+                  </div>
                 </router-link>
-                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">{{card.text}}</div>
-                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                  <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="#000000" d="M14,14H7V16H14M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M17,10H7V12H17V10Z" />
-                  </svg>{{card.postDate.replace('date:','')}}
-                </div>
               </div>
             </transition-group>
           </div>
@@ -35,11 +35,12 @@
 <script>
 import axios from 'axios'
 import tagcloud from './tagCloud'
-import {root} from '../config.json'
+import {root, about} from '../config.json'
 export default {
   data () {
     return {
       tags: null,
+      about,
       articles: [],
       colors: [],
       styles: []
@@ -52,7 +53,18 @@ export default {
   },
   created () {
     if (!Object.keys(this.$route.query).length) {
-      this.getPages()
+      let articles = this.$store.state.articles
+      if (articles) {
+        for (let i = 0, len = articles.length; i < len; i++) {
+          this.colors.push(this.getColor())
+          this.styles.push({top: -100 * i + 'px', transitionDelay: 0.1 * i + 's'})
+        }
+        this.$store.commit('saveColors', this.colors)
+        this.articles = articles
+        this.tags = this.$store.state.tags
+      } else {
+        this.getPages()
+      }
     } else {
       this.getPagesOfTag()
     }
@@ -76,14 +88,8 @@ export default {
           this.colors.push(this.getColor())
           this.styles.push({top: -100 * i + 'px', transitionDelay: 0.1 * i + 's'})
         }
+        this.$store.commit('saveColors', this.colors)
         this.articles = articles
-        // let loop = setInterval(() => {
-        //   if (articles.length) {
-        //     this.articles.push(articles.shift())
-        //   } else {
-        //     clearInterval(loop)
-        //   }
-        // }, 1000)
         this.tags = data.data.allTags
         this.$store.commit('saveArticles', this.articles)
         this.$store.commit('saveTags', data.data.allTags)

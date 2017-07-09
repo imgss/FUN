@@ -12,7 +12,7 @@
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <!--title-->
-            <div class="mdl-card__media mdl-color-text--grey-50">
+            <div class="mdl-card__media mdl-color-text--grey-50" :style='{backgroundColor: color}'>
               <loading v-if='loading'></loading>
               <h3 v-else>{{title.split(':')[1].trim()}}</h3>
             </div>
@@ -96,6 +96,7 @@ export default {
   data () {
     return {
       loading: false,
+      color: null,
       post: null,
       error: null,
       title: null,
@@ -105,9 +106,11 @@ export default {
     }
   },
   created () {
-    // 组件创建完后获取数据，
-    // 此时 data 已经被 observed 了
+    this.color = this.$store.getters.currentColor
     this.fetchData()
+  },
+  updated () {
+    this.color = this.$store.getters.currentColor
   },
   watch: {
     // 如果路由有变化，会再次执行该方法

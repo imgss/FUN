@@ -5,6 +5,7 @@ Vue.use(Vuex)
 
 const state = {
   current: 0,
+  colors: [],
   articles: null,
   tags: null
 }
@@ -23,6 +24,10 @@ let getters = {
     } else {
       return state.articles[state.current - 1]
     }
+  },
+  currentColor: state => {
+    console.log(state.colors[state.current])
+    return state.colors[state.current]
   }
 }
 
@@ -34,6 +39,10 @@ let mutations = {
   },
   saveTags (state, tags) {
     state.tags = tags
+  },
+  saveColors (state, colors) {
+    console.log(colors)
+    state.colors = colors
   },
   setCurrent (state, currentId) {
     if (typeof currentId === 'number') {

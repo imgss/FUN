@@ -39,7 +39,7 @@ spa blog
 
 5. 要有works展示页面
 
-6. about页面
+6. about页面 ✔  
 
 7. 美化UI,过渡等
 
