@@ -1,8 +1,10 @@
 <template>
 <div class='mdl-layout__container'>
-    <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
+    <div class="demo-blog mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
-          <div class='demo-blog__posts mdl-grid tagWrapper' v-if='!this.$route.query.tag'>
+          <div class='demo-blog__posts mdl-grid tagWrapper' :style='reverse ? {transform:"rotate(90deg)",position:"fixed",left:"300px"} : {
+  transform:"rotate(0deg)"
+}' v-if='!this.$route.query.tag'>
             <!--标签云-->
             <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
             <!--关于，个人留言-->
@@ -41,6 +43,7 @@ export default {
     return {
       tags: null,
       about,
+      reverse: false,
       articles: [],
       colors: [],
       styles: []
@@ -68,6 +71,15 @@ export default {
       // }
     } else {
       this.getPagesOfTag()
+    }
+  },
+  mounted () {
+    let main = document.querySelector('main')
+    main.onscroll = () => {
+      console.log(main.scrollTop)
+      if (main.scrollTop > 300) {
+        this.reverse = true
+      }
     }
   },
   methods: {
@@ -139,6 +151,8 @@ svg
   width: 100%
 .tagWrapper
   justify-content: center
+  transition:all .3s ease
+  transform-origin : 0% 0%
 .mdl-card.mdl-cell.mdl-cell--12-col {
     transition: all .3s ease;
 }

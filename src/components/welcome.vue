@@ -1,5 +1,4 @@
 <template>
-
   <div class="hello">
   <a>
     <router-link :to="{ name: 'posts' }">
