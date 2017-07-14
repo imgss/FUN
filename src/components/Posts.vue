@@ -2,9 +2,7 @@
 <div class='mdl-layout__container'>
     <div class="demo-blog mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
-          <div class='demo-blog__posts mdl-grid tagWrapper' :style='reverse ? {transform:"rotate(90deg)",position:"fixed",left:"300px"} : {
-  transform:"rotate(0deg)"
-}' v-if='!this.$route.query.tag'>
+          <div class='demo-blog__posts mdl-grid tagWrapper' :class='reverse ? "active" : ""' v-if='!this.$route.query.tag'>
             <!--标签云-->
             <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
             <!--关于，个人留言-->
@@ -75,11 +73,19 @@ export default {
   },
   mounted () {
     let main = document.querySelector('main')
+    let timeId
+    let lastTop = 0
     main.onscroll = () => {
-      console.log(main.scrollTop)
-      if (main.scrollTop > 300) {
-        this.reverse = true
-      }
+      lastTop = main.scrollTop
+      clearTimeout(timeId)
+      timeId = setTimeout(() => {
+        console.log(lastTop, main.scrollTop)
+        if (main.scrollTop > 300) {
+          this.reverse = true
+        } else if (main.scrollTop < 300) {
+          this.reverse = false
+        }
+      }, 200)
     }
   },
   methods: {
@@ -132,6 +138,13 @@ export default {
 svg
   width:25px
   height:20px
+.active  
+  transform:rotate(90deg)
+  top: -20px
+  position:fixed
+  left:300px
+.active svg
+    transform :rotate(-90deg)
 .mdl-card__supporting-text.meta.mdl-color-text--grey-600
   text-align: left
   line-height: 2em
