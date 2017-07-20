@@ -3,10 +3,11 @@
     <div class="demo-blog mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid tagWrapper' :class='reverse ? "active" : ""' v-if='!this.$route.query.tag'>
+            <timeline class='mdl-card mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop'></timeline>
             <!--标签云-->
             <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
             <!--关于，个人留言-->
-            <div class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--8-col-desktop meta about'><h1>about</h1>{{about}}</div>
+            <div class='mdl-card mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop meta about'><h1>about</h1>{{about}}</div>
           </div>
           <div class='demo-blog__posts mdl-grid tagWrapper' v-else>
             <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
@@ -35,6 +36,7 @@
 <script>
 import axios from 'axios'
 import tagcloud from './tagCloud'
+import timeline from './timeline'
 import {root, about} from '../config.json'
 export default {
   data () {
@@ -128,7 +130,8 @@ export default {
     }
   },
   components: {
-    tagcloud
+    tagcloud,
+    timeline
   }
 }
 
@@ -143,7 +146,7 @@ svg
   top: -20px
   position:fixed
   left:300px
-.active svg
+.active  svg
     transform :rotate(-90deg)
 .mdl-card__supporting-text.meta.mdl-color-text--grey-600
   text-align: left
