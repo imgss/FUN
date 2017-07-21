@@ -1,6 +1,6 @@
 <template>
   <div class='timeline'>
-    <div v-for="year in years" :key="year" :class='year % 2 ===0 ? "foot-left" : "foot-right"'>
+    <div v-for="year in years" :key="year" :class='year % 2 ===0 ? "foot-left" : "foot-right"' @click='trigger(year)'>
       <div class='foot'><span class='year'>{{year}}</span></div>
     </div>
   </div>
@@ -11,7 +11,12 @@
 export default {
   data () {
     return {
-      years: [2011, 2012, 2013, 2014, 2015, 2016, 2017]
+      years: [2017, 2016, 2015, 2014, 2013, 2012, 2011]
+    }
+  },
+  methods: {
+    trigger (year) {
+      this.$emit('yearClick', year)
     }
   }
 }

@@ -3,7 +3,7 @@
     <div class="demo-blog mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid tagWrapper' :class='reverse ? "active" : ""' v-if='!this.$route.query.tag'>
-            <timeline class='mdl-card mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop'></timeline>
+            <timeline class='mdl-card mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop' @yearClick = 'getPagesOfYear'></timeline>
             <!--标签云-->
             <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
             <!--关于，个人留言-->
@@ -13,7 +13,7 @@
             <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
           </div>
           <div class='demo-blog__posts mdl-grid'>
-            <transition-group name='fade'>
+            <transition-group name='fade' appear @after-appear="removeDelay">
               <!--文章摘要-->
               <div class="mdl-card mdl-cell mdl-cell--12-col" :style='styles[index]' @mouseenter = "hover(index)" @mouseleave = "hover(index)" @click="setCurrent(index)" v-for='(card,index) in articles' v-bind:key="index">
                 <router-link :to="{path: card.id}">
@@ -42,6 +42,7 @@ export default {
   data () {
     return {
       tags: null,
+      noDelay: false,
       about,
       reverse: false,
       articles: [],
@@ -91,6 +92,10 @@ export default {
     }
   },
   methods: {
+    removeDelay () {
+      this.styles.forEach(style => { style.transitionDelay = '0s' })
+      this.noDelay = true
+    },
     hover (index) {
       this.styles[index].transitionDelay = '0s' // 将之前的过渡延迟去掉，防止影响hover效果
       let top = parseInt(this.styles[index].top)
@@ -118,14 +123,23 @@ export default {
       })
     },
     getPagesOfTag (tag = this.$route.query.tag) { // 响应tag点击事件
+      !this.noDelay && this.removeDelay()
       this.articles = this.$store.state.articles.filter(article => {
         if (article.tags.indexOf(tag) !== -1) {
           return article
         }
       })
     },
+    getPagesOfYear (year) {
+      !this.noDelay && this.removeDelay()
+      this.articles = this.$store.state.articles.filter(article => {
+        let re = new RegExp(year)
+        if (re.test(article.postDate)) {
+          return article
+        }
+      })
+    },
     setCurrent (index) {
-      console.log(index)
       this.$store.commit('setCurrent', index)
     }
   },
@@ -169,13 +183,13 @@ svg
   justify-content: center
   transition:all .3s ease
   transform-origin : 0% 0%
-.mdl-card.mdl-cell.mdl-cell--12-col {
-    transition: all .3s ease;
+.fade-enter-active {
+  transition: all .3s ease-out
 }
-.fade-enter-active, .fade-leave-active {
-  transition: all 1s ease-out
-}
-.fade-enter, .fade-leave {
+.fade-leave-active {
+  transition: all .01s ease-out
+} 
+.fade-enter {
   transform: translateX(800px);
 }
 </style>
