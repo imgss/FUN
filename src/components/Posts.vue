@@ -183,6 +183,8 @@ svg
   justify-content: center
   transition:all .3s ease
   transform-origin : 0% 0%
+.mdl-card.mdl-cell.mdl-cell--12-col
+  transition: all .3s
 .fade-enter-active {
   transition: all .3s ease-out
 }
