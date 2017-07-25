@@ -43,7 +43,6 @@ body .demo-blog {
 }
 
 .demo-blog.mdl-layout .mdl-layout__content {
-  padding-top: 100px;
   position: relative;
   -webkit-overflow-scrolling: touch;
 }

@@ -83,6 +83,7 @@ import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import {root} from '../config.json'
 let md = new MarkdownIt({
+  html: true,
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
