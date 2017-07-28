@@ -1,7 +1,7 @@
 <template>
   <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
-        <toc :headers = 'toc'></toc>
+        <toc :headers = 'toc' :active = 'active'></toc>
         <div class="demo-back">
           <router-link :to="{ name: 'posts' }">
             <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go back" role="button">
@@ -23,7 +23,7 @@
                     <path fill="#566" d="M9,11.75A1.25,1.25 0 0,0 7.75,13A1.25,1.25 0 0,0 9,14.25A1.25,1.25 0 0,0 10.25,13A1.25,1.25 0 0,0 9,11.75M15,11.75A1.25,1.25 0 0,0 13.75,13A1.25,1.25 0 0,0 15,14.25A1.25,1.25 0 0,0 16.25,13A1.25,1.25 0 0,0 15,11.75M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,11.71 4,11.42 4.05,11.14C6.41,10.09 8.28,8.16 9.26,5.77C11.07,8.33 14.05,10 17.42,10C18.2,10 18.95,9.91 19.67,9.74C19.88,10.45 20,11.21 20,12C20,16.41 16.41,20 12,20Z" />
                 </svg>
               </div>
-              <div>
+            <div>
                 <span>{{date && date.replace('date:','')}}</span>
               </div>
               <div class="section-spacer">
@@ -103,7 +103,8 @@ export default {
       title: null,
       date: null,
       toc: null,
-      tags: null
+      tags: null,
+      active: 0
     }
   },
   created () {
@@ -118,11 +119,25 @@ export default {
     '$route': 'fetchData'
   },
   methods: {
+    activeHeaders () {
+      let hs = []
+      document.querySelector('main').addEventListener('scroll', (e) => {
+        hs = hs.length ? hs : [].slice.call(document.getElementById('article').querySelectorAll('h2,h3,h4'))
+        for (let h of hs) {
+          let scrollTop = e.target.scrollTop
+          let offsetTop = h.offsetTop
+          let innerHeight = window.innerHeight
+          if (offsetTop < scrollTop + innerHeight && offsetTop > scrollTop) {
+            this.active = hs.indexOf(h)
+            break
+          }
+        }
+      })
+    },
     fetchData (id) {
       let re = /---\n([\s\S]+)\n---([\s\S]+)/
       this.error = this.post = null
       this.loading = true
-      console.log(this.$route.params.id)
       getPost(this.$route.params.id, (post) => {
         let postArr = re.exec(post.data)
         let info = postArr[1]
@@ -134,6 +149,7 @@ export default {
         this.toc = this.get_toc(postArr[2])
         this.tags = this.get_tags(tags)
         this.post = this.wrapID(html)
+        this.activeHeaders()
       }, (err) => {
         this.loading = false
         this.title = ':oops,这个文章可能被风吹走了'

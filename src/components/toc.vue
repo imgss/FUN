@@ -1,6 +1,6 @@
 <template>
 <ul class='mdl-card mdl-shadow--4dp' id='toc'>
-  <li v-for='(header,i) in headers' :style='styleArr[i]'>
+  <li v-for='(header,i) in headers' :style='styleArr[i]' :class='i===active?"active":""'>
     <a v-view = '`#${header.text}`'>{{header.text}}</a>
   </li>
 </ul>
@@ -13,7 +13,7 @@ export default {
     return {
     }
   },
-  props: ['headers'],
+  props: ['headers', 'active'],
   computed: {
     styleArr: function () {
       let headers = this.headers
@@ -52,7 +52,9 @@ export default {
     cursor:pointer
     & a
       color:#f66
-      &:hover 
-        color: #0086d4
+    &.active a
+      color: #66F
+    & a:hover 
+      color: #0086d4
 
 </style>
