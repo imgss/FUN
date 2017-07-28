@@ -1,5 +1,6 @@
 <template>
-  <div class="mdl-layout__container"><div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout">
+  <div class="mdl-layout__container" :style='{"backgroundImage": `linear-gradient(0deg, #fff 0%, ${color} 100%)`}'>
+    <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
         <toc :headers = 'toc' :active = 'active'></toc>
         <div class="demo-back">
@@ -214,8 +215,9 @@ export default {
 .demo-back
   position:fixed
 .mdl-layout__container
-  background:#cccccc
-  background:url('../assets/article.jpg')
+  background-color: #85FFBD;
+  background-color: #21D4FD;
+  background-image: linear-gradient(0deg, #21D4FD 0%, #B721FF 100%);
   background-size: cover
 #article
   text-align: left
