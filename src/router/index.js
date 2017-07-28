@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Posts from '@/components/Posts'
 import welcome from '@/components/welcome'
-import article from '@/components/article'
-
+const Article = resolve => require(['@/components/article'], resolve)
 Vue.use(Router)
 
 export default new Router({
@@ -22,7 +21,7 @@ export default new Router({
     {
       path: '/article/:id',
       name: 'article',
-      component: article
+      component: Article
     },
     {
       path: '/tags',
