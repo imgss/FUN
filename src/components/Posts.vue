@@ -3,11 +3,12 @@
     <div class="demo-blog mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid tagWrapper' :class='reverse ? "active" : ""' v-if='!this.$route.query.tag'>
-            <timeline class='mdl-card mdl-cell mdl-cell--2-col mdl-cell--2-col-desktop' @yearClick = 'getPagesOfYear'></timeline>
+            <div class ='menu'><i class="material-icons">&#xE5D2;</i></div>
+            <timeline class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--2-col-desktop' @yearClick = 'getPagesOfYear'></timeline>
             <!--标签云-->
-            <tagcloud  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
+            <tagcloud  class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
             <!--关于，个人留言-->
-            <div class='mdl-card mdl-cell mdl-cell--6-col mdl-cell--6-col-desktop meta about'><h1>about</h1>{{about}}</div>
+            <div class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop meta about'><h1>about</h1>{{about}}</div>
           </div>
           <div class='demo-blog__posts mdl-grid tagWrapper' v-else>
             <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
@@ -83,9 +84,9 @@ export default {
       clearTimeout(timeId)
       timeId = setTimeout(() => {
         console.log(lastTop, main.scrollTop)
-        if (main.scrollTop > 300) {
+        if (main.scrollTop > 280) {
           this.reverse = true
-        } else if (main.scrollTop < 300) {
+        } else if (main.scrollTop < 280) {
           this.reverse = false
         }
       }, 200)
@@ -152,16 +153,18 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
+.menu
+  display:none
+  cursor :pointer
+.active .menu
+  position :fixed
+  display :block
+  left:20px
+  top:20px
 svg
   width:25px
   height:20px
-.active  
-  transform:rotate(90deg)
-  top: -20px
-  position:fixed
-  left:300px
-.active  svg
-    transform :rotate(-90deg)
+.active  div
 .mdl-card__supporting-text.meta.mdl-color-text--grey-600
   text-align: left
   line-height: 2em
@@ -174,7 +177,7 @@ svg
 .title
   font-size: 34px
 .mdl-card.mdl-cell.mdl-cell--12-col
-  box-shadow: 0px 0px 30px #333
+  box-shadow: 0px 0px 20px #aaa
 .posts
   display: flex
   justify-content: center
