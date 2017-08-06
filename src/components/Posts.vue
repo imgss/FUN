@@ -37,7 +37,7 @@
 <script>
 import axios from 'axios'
 import tagcloud from './tagCloud'
-import timeline from './timeline'
+const timeline = resolve => require(['./timeline'], resolve)
 import {root, about} from '../config.json'
 export default {
   data () {

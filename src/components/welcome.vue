@@ -2,13 +2,16 @@
   <div class="hello">
   <a>
     <router-link :to="{ name: 'posts' }">
-      <h2>{{ msg }}</h2>
+
+      <loading></loading>
+      <h6>{{ msg }}</h6>
     </router-link>
   </a>
   </div>
 </template>
 
 <script>
+import loading from '@/components/loading/2'
 export default {
   name: 'hello',
   data () {
@@ -18,6 +21,9 @@ export default {
   },
   mounted () {
     setTimeout(() => this.$router.push({name: 'posts'}), 3000)
+  },
+  components: {
+    loading
   }
 }
 </script>

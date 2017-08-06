@@ -76,7 +76,7 @@
 
 <script>
 import axios from 'axios'
-import loading from '@/components/loading'
+import loading from '@/components/loading/1'
 import toTop from '@/components/toTop'
 import toc from '@/components/toc'
 import tags from '@/components/tags'
