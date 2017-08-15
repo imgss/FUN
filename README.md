@@ -4,7 +4,7 @@
 
 ## target
 
-spa blog
+spa blog(怕~F5~)
 
 ## how it works
 
@@ -14,6 +14,8 @@ spa blog
 
 2. FUN通过获取index.json得到`md文件的信息`，当点击界面上的文章简介时，请求md文件，转换成html并展示出来
 
+## 配置
+  在`src/config.json`中配置你自己的md文件根目录，获得自己的
 
 ## 已实现
 
@@ -59,5 +61,7 @@ npm run dev
 
 npm run build
 ```
+## license
+MIT
 
 
