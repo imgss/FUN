@@ -1,5 +1,5 @@
 <template>
-    <div  class="demo-up">
+    <div  class="demo-up" v-show='show'>
         <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go top" role="button">
             <i class="material-icons md-48" role="presentation">arrow_back</i>
             <span class="mdl-button__ripple-container">
@@ -13,11 +13,20 @@
 <script>
 export default {
   name: 'toTop',
+  data: () => {
+    return {show: false}
+  },
   methods: {
   },
   mounted () {
+    document.getElementsByTagName('main')[0].addEventListener('scroll', event => {
+      if (event.target.scrollTop > 400) {
+        this.show = true
+      } else {
+        this.show = false
+      }
+    })
     document.querySelector('.demo-up').addEventListener('click', function () {
-      console.log('click')
       let main = document.getElementsByTagName('main')[0]
       if (main.scrollTop === 0) {
         return
@@ -45,6 +54,8 @@ export default {
   top: 20px
   right: 50px
   color: rgb(255,171,64)
+    a
+    background-color:white
 }
 </style>
 
