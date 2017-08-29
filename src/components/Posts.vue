@@ -1,5 +1,6 @@
 <template>
 <div class='mdl-layout__container'>
+    <timer :dates='dates' :index='index'></timer>
     <div class="demo-blog mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
           <div class='demo-blog__posts mdl-grid tagWrapper' :class='reverse ? "active" : ""' v-if='!this.$route.query.tag'>
@@ -37,18 +38,21 @@
 <script>
 import axios from 'axios'
 import tagcloud from './tagCloud'
+import timer from './timer'
 const timeline = resolve => require(['./timeline'], resolve)
 import {root, about} from '../config.json'
 export default {
   data () {
     return {
+      index: 0,
       tags: null,
       noDelay: false,
       about,
       reverse: false,
       articles: [],
       colors: [],
-      styles: []
+      styles: [],
+      dates: []
     }
   },
   computed: {
@@ -78,18 +82,19 @@ export default {
   mounted () {
     let main = document.querySelector('main')
     let timeId
-    let lastTop = 0
     main.onscroll = () => {
-      lastTop = main.scrollTop
       clearTimeout(timeId)
       timeId = setTimeout(() => {
-        console.log(lastTop, main.scrollTop)
         if (main.scrollTop > 280) {
           this.reverse = true
         } else if (main.scrollTop < 280) {
           this.reverse = false
         }
-      }, 200)
+        console.log(main.scrollTop)
+        let index = Math.floor((main.scrollTop - 300) / 180)
+        this.index = index > 0 ? index : 0
+        console.log(this.index)
+      }, 100)
     }
   },
   methods: {
@@ -118,6 +123,7 @@ export default {
         }
         this.$store.commit('saveColors', this.colors)
         this.articles = articles
+        this.dates = articles.map(article => article.postDate)
         this.tags = data.data.allTags
         this.$store.commit('saveArticles', this.articles)
         this.$store.commit('saveTags', data.data.allTags)
@@ -146,7 +152,8 @@ export default {
   },
   components: {
     tagcloud,
-    timeline
+    timeline,
+    timer
   }
 }
 
