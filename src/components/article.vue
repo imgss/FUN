@@ -66,6 +66,7 @@
             </a>
           </nav>
         </div>
+        <foot :show='show'></foot>
       </main>
       <div class="mdl-layout__obfuscator"></div>
       <!-- 返回顶部 -->
@@ -83,6 +84,7 @@ import toc from '@/components/toc'
 import tags from '@/components/tags'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
+import foot from './footer'
 import {root} from '../config.json'
 let md = new MarkdownIt({
   html: true,
@@ -98,6 +100,7 @@ let md = new MarkdownIt({
 export default {
   data () {
     return {
+      show: false,
       loading: false,
       color: null,
       post: null,
@@ -148,6 +151,7 @@ export default {
         this.title = title
         this.date = date
         this.loading = false
+        this.show = true
         this.toc = this.get_toc(postArr[2])
         this.tags = this.get_tags(tags)
         this.post = this.wrapID(html)
@@ -205,7 +209,8 @@ export default {
     loading,
     toc,
     toTop,
-    tags
+    tags,
+    foot
   }
 }
 
