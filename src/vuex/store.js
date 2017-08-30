@@ -28,6 +28,9 @@ let getters = {
   currentColor: state => {
     console.log(state.colors[state.current])
     return state.colors[state.current]
+  },
+  dates: state => {
+    return state.articles.map(article => article.postDate)
   }
 }
 
