@@ -174,8 +174,6 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
-.centered
-  justify-content: center
 .menu
   display:none
   cursor :pointer

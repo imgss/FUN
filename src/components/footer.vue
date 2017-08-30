@@ -18,3 +18,7 @@ export default {
 }
 </script>
 
+<style lang='stylus'>
+.centered.mdl-mini-footer
+  justify-content: center
+</style>
