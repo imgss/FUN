@@ -83,17 +83,19 @@ import toTop from '@/components/toTop'
 import toc from '@/components/toc'
 import tags from '@/components/tags'
 import MarkdownIt from 'markdown-it'
-import hljs from 'highlight.js'
+// import hljs from 'highlight.js'
 import foot from './footer'
 import {root} from '../config.json'
 let md = new MarkdownIt({
   html: true,
   highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value
-      } catch (__) {}
-    }
+    import('highlight.js').then(hljs => {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, str).value
+        } catch (__) {}
+      }
+    })
     return '' // use external default escaping
   }
 })

@@ -17,7 +17,7 @@
           <transition-group name='fade' appear @after-appear="removeDelay">
             <!--文章摘要-->
             <div class="mdl-card mdl-cell mdl-cell--12-col" 
-              style='styles[index]' 
+              :style='styles[index]' 
               @mouseenter = "hover(index)" 
               @mouseleave = "hover(index)" 
               @click="setCurrent(index)" 
@@ -49,7 +49,7 @@ import axios from 'axios'
 import tagcloud from './tagCloud'
 import timer from './timer'
 import foot from './footer'
-const timeline = resolve => require(['./timeline'], resolve)
+import timeline from './timeline'
 import {root, about} from '../config.json'
 export default {
   data () {
@@ -130,7 +130,7 @@ export default {
         let articles = data.data.values
         for (let i = 0, len = articles.length; i < len; i++) {
           this.colors.push(this.getColor())
-          this.styles.push({top: -100 * i + 'px', transitionDelay: 0.1 * i + 's'})
+          this.styles.push({transitionDelay: 0.1 * i + 's'})
         }
         this.$store.commit('saveColors', this.colors)
         this.articles = articles
