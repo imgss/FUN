@@ -200,6 +200,7 @@ export default {
       } else {
         articleId = this.$store.getters.prevArticle.id
       }
+      this.show = false
       this.$store.commit('setCurrent', articleId)
       this.$router.push(`${articleId}`)
       this.fetchData()
