@@ -6,7 +6,6 @@ const Article = resolve => require(['@/components/article'], resolve)
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',

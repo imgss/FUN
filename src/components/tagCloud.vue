@@ -2,7 +2,7 @@
     <div id='tagCloud'>
         <svg width='100%' height='100%' @mousemove='listener($event)'>
             <circle :x='CX' :y='CY' :r='r' style='stroke:#ccc,fill=rgba(0,0,0,0)'></circle>
-            <a v-for = 'tag in textTags' href='javascript:void 0'>
+            <a v-for='tag in textTags' href='javascript:void 0'>
                 <text :x='tag.x' :y='tag.y' @click='tagClick($event)' :font-size='14 || height / 20 * (600 / (600-tag.z))' :fill-opacity='((400+tag.z)/600)'>{{tag.text}}</text>
             </a>
         </svg>

@@ -116,6 +116,7 @@ export default {
   },
   created () {
     this.color = this.$store.getters.currentColor
+    console.log(this.color)
     this.fetchData()
   },
   updated () {
@@ -142,6 +143,7 @@ export default {
       })
     },
     fetchData (id) {
+      console.log(this.$route.params.id)
       let re = /---\n([\s\S]+)\n---([\s\S]+)/
       this.error = this.post = null
       this.loading = true
