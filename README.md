@@ -4,7 +4,7 @@
 
 ## target
 
-spa blog(怕~F5~)
+spa blog，hash router(不怕~F5~)
 
 ## how it works
 
@@ -29,21 +29,24 @@ spa blog(怕~F5~)
 
 5. 代码高亮
 
+6. 有toc :white_check_mark:
+
+7. 有tags :white_check_mark:
+
+8. 有后台生成index.json的工具 :white_check_mark:
+
+9. 有标签云 :white_check_mark:
+
 ## ToDo
 
-1. 要有toc :white_check_mark:
-
-2. 要有tags :white_check_mark:
-
-3. 要有后台生成index.json的工具 :white_check_mark:
-
-4. 要有标签云 :white_check_mark:
 
 5. 要有works展示页面
 
 6. about页面 ✔  
 
 7. 美化UI,过渡等
+
+8. 加入分享？？
 
 ## 运行
 
