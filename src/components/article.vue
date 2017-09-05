@@ -71,6 +71,7 @@
       <div class="mdl-layout__obfuscator"></div>
       <!-- 返回顶部 -->
       <toTop></toTop>
+      <walker :articleDone='!loading'></walker>
     </div>
   </div>
 </template>
@@ -81,6 +82,7 @@ import axios from 'axios'
 import loading from '@/components/loading/1'
 import toTop from '@/components/toTop'
 import toc from '@/components/toc'
+import walker from '@/components/walker'
 import tags from '@/components/tags'
 import MarkdownIt from 'markdown-it'
 // import hljs from 'highlight.js'
@@ -143,7 +145,6 @@ export default {
       })
     },
     fetchData (id) {
-      console.log(this.$route.params.id)
       let re = /---\n([\s\S]+)\n---([\s\S]+)/
       this.error = this.post = null
       this.loading = true
@@ -215,7 +216,8 @@ export default {
     toc,
     toTop,
     tags,
-    foot
+    foot,
+    walker
   }
 }
 

@@ -8,7 +8,7 @@
           <!--标签云-->
           <tagcloud  class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
           <!--关于，个人留言-->
-          <div class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop meta about'><h1>about</h1>{{about}}</div>
+          <div class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--6-col-desktop meta about'><h1>about</h1><div v-html='about'></div></div>
         </div>
         <div class='demo-blog__posts mdl-grid tagWrapper' v-else>
           <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
@@ -101,10 +101,8 @@ export default {
         } else if (main.scrollTop < 280) {
           this.reverse = false
         }
-        console.log(main.scrollTop)
         let index = Math.floor((main.scrollTop) / 180)
         this.index = index > 0 ? index : 0
-        console.log(this.index)
       }, 100)
     }
   },
