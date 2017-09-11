@@ -16,7 +16,7 @@
         <div class='demo-blog__posts mdl-grid'>
           <transition-group name='fade' appear @after-appear="removeDelay">
             <!--文章摘要-->
-            <div class="mdl-card mdl-cell mdl-cell--12-col" 
+            <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col" 
               :style='styles[index]' 
               @mouseenter = "hover(index)" 
               @mouseleave = "hover(index)" 
@@ -194,7 +194,7 @@ svg
   background-size: cover
   background-repeat: no-repeat
 .title
-  font-size: 34px
+  font-size: 1em
 .mdl-card.mdl-cell.mdl-cell--12-col
   box-shadow: 0px 0px 20px #aaa
 .posts

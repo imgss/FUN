@@ -1,17 +1,18 @@
 <template>
-  <div class='timeline' :class='{}'>
-    <div v-for="(year,index) in years" :key="index" :class='index % 2 ===0 ? "foot-left" : "foot-right"' >
-      <div class='foot' v-bind:style="classes[index]"></div>
+  <div class='timeline'>
+    <div v-for="(opacity,index) in opacities" :key="index" :class='index % 2 ===0 ? "foot-left" : "foot-right"' >
+      <div class='foot' v-bind:style="{opacity:opacity}"></div>
     </div>
   </div>
 
 </template>
 
 <script>
+import Vue from 'Vue'
 export default {
   data () {
     return {
-      years: [],
+      opacities: [],
       classes: []
     }
   },
@@ -27,23 +28,24 @@ export default {
       let main = document.querySelector('main')
       let p = document.querySelector('#article')
       let mainHeight = parseInt(getComputedStyle(p).height) - 290
-      let len = this.years.length
+      let len = this.opacities.length
       let perHeight = mainHeight / len
       let beishu = parseInt(main.scrollTop / perHeight)
       for (let i = 0; i < len; i++) {
         if (i > len - beishu) {
-          this.classes[i].opacity = 0.6
+          Vue.set(this.opacities, i, 0.6)
+          // this.classes[i].opacity = 0.6
         } else {
-          this.classes[i].opacity = 0
+          Vue.set(this.opacities, i, 0)
+          // this.classes[i].opacity = 0
         }
       }
-      console.log(this.years)
     })
   },
   created () {
     let count = parseInt(window.innerHeight / 40)
     for (let i = 0; i < count; i++) {
-      this.years.push(0.5)
+      this.opacities.push(0)
       this.classes.push({opacity: i / 20})
     }
   },
@@ -84,10 +86,6 @@ export default {
     background-position: 0% 0%;
 .foot-right div 
   background-position: 100% 0%;
-.foot-left .year 
-  right: 40px;
-.foot-right .year 
-  left: 20px;
 .foot span 
   position: relative;
 
