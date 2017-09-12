@@ -47,6 +47,7 @@
 <script>
 import axios from 'axios'
 import tagcloud from './tagCloud'
+import { mapState } from 'vuex'
 import timer from './timer'
 import foot from './footer'
 import timeline from './timeline'
@@ -69,23 +70,12 @@ export default {
   computed: {
     pixs () {
       return this.styles.map(style => style + 'px')
-    }
+    },
+    ...mapState(['tags', 'articles'])
   },
   created () {
     if (!Object.keys(this.$route.query).length) {
-      // let articles = this.$store.state.articles
-      // if (articles) {
-      //   for (let i = 0, len = articles.length; i < len; i++) {
-      //     this.colors.push(this.getColor())
-      //     this.styles.push({top: -100 * i + 'px', transitionDelay: 0.1 * i + 's'})
-      //   }
-      //   this.$store.commit('saveColors', this.colors)
-      //   this.articles = articles
-      //   this.tags = []
-      //   this.tags = this.$store.state.tags
-      // } else {
       this.getPages()
-      // }
     } else {
       this.getPagesOfTag()
     }

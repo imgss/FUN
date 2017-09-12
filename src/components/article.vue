@@ -18,7 +18,7 @@
               <h3 v-else>{{title.split(':')[1].trim()}}</h3>
             </div>
             <!--发布日期-->
-            <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+            <div class="mdl-color-text--grey-700 no-select meta">
               <div class="minilogo">
                 <svg style="width:48px;height:48px" viewBox="0 0 24 24">
                     <path fill="#566" d="M9,11.75A1.25,1.25 0 0,0 7.75,13A1.25,1.25 0 0,0 9,14.25A1.25,1.25 0 0,0 10.25,13A1.25,1.25 0 0,0 9,11.75M15,11.75A1.25,1.25 0 0,0 13.75,13A1.25,1.25 0 0,0 15,14.25A1.25,1.25 0 0,0 16.25,13A1.25,1.25 0 0,0 15,11.75M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,11.71 4,11.42 4.05,11.14C6.41,10.09 8.28,8.16 9.26,5.77C11.07,8.33 14.05,10 17.42,10C18.2,10 18.95,9.91 19.67,9.74C19.88,10.45 20,11.21 20,12C20,16.41 16.41,20 12,20Z" />
@@ -31,7 +31,7 @@
               <!--tags-->
                 <tags :tags = 'tags'></tags>
               </div>
-              <div class="meta__favorites">
+              <div :style='{color:heart}' class="meta__favorites" @click='heart = heart === "#f66" ? "" : "#f66"'>
                 <i class="material-icons" role="presentation">favorite</i>
                 <span class="visuallyhidden">favorites</span>
               </div>
@@ -93,7 +93,6 @@ let md = new MarkdownIt({
   highlight: function (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        console.log(hljs.highlight(lang, str).value)
         return hljs.highlight(lang, str).value
       } catch (__) {}
     }
@@ -112,12 +111,12 @@ export default {
       date: null,
       toc: null,
       tags: null,
-      active: 0
+      active: 0,
+      heart: ''
     }
   },
   created () {
     this.color = this.$store.getters.currentColor
-    console.log(this.color)
     this.fetchData()
   },
   updated () {
@@ -224,6 +223,8 @@ export default {
 
 
 <style lang='stylus'>
+.no-select
+  user-select: none
 .demo-back
   position:fixed
 .mdl-layout__container

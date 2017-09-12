@@ -12,6 +12,8 @@
 
 <script>
 import loading from '@/components/loading/2'
+import ajax from 'axios'
+import {root} from '../config.json'
 export default {
   name: 'hello',
   data () {
@@ -19,8 +21,16 @@ export default {
       msg: `Welcome to Imgss' Blog`
     }
   },
+  created () {
+    ajax.get(`${root}index.json`).then((data) => {
+      this.$store.commit('saveColors', this.colors)
+      this.$store.commit('saveArticles', this.articles)
+      this.$store.commit('saveTags', data.data.allTags)
+      this.$router.push({name: 'posts'})
+    })
+  },
   mounted () {
-    setTimeout(() => this.$router.push({name: 'posts'}), 3000)
+    // setTimeout(() => this.$router.push({name: 'posts'}), 3000)
   },
   components: {
     loading
