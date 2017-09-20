@@ -48,6 +48,8 @@ spa blog，hash router(不怕~F5~)
 
 8. 加入分享？？
 
+9. 实现转载功能
+
 ## 运行
 
 ```bash
