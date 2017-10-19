@@ -37,6 +37,8 @@ spa blog，hash router(不怕~F5~)
 
 9. 有标签云 :white_check_mark:
 
+1. 简历 :bookmark_tabs:
+
 ## ToDo
 
 
