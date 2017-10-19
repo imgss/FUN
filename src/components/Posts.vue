@@ -14,14 +14,14 @@
           <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
         </div>
         <div class='demo-blog__posts mdl-grid'>
-          <transition-group name='fade' appear @after-appear="removeDelay">
+          <transition-group name='fade' appear @after-appear="removeDelay" v-if='hasArticles'>
             <!--文章摘要-->
             <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col" 
               :style='styles[index]' 
               @mouseenter = "hover(index)" 
               @mouseleave = "hover(index)" 
               @click="setCurrent(index)" 
-              v-for='(card,index) in articles' 
+              v-for='(card,index) in articles'
               v-bind:key="index"
               >
               <router-link :to="{path: card.id}">
@@ -35,6 +35,11 @@
               </router-link>
             </div>
           </transition-group>
+            <div v-else class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col">
+                <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50" style='background:gray'>你来到了没有知识的荒原!</div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">404 Not Found</div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600"></div>
+            </div>
         </div>
         <foot :show='show'></foot>
     </main>
@@ -70,6 +75,9 @@ export default {
   computed: {
     pixs () {
       return this.styles.map(style => style + 'px')
+    },
+    hasArticles () {
+      return !!this.articles.length
     },
     ...mapState(['tags', 'articles'])
   },
