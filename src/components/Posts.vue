@@ -38,7 +38,11 @@
             <div v-else class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col">
                 <div class="mdl-card__title title mdl-card__media mdl-color-text--grey-50" style='background:gray'>你来到了没有知识的荒原!</div>
                 <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">404 Not Found</div>
-                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600"></div>
+                <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                  <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                    <path fill="#000000" d="M14,14H7V16H14M19,19H5V8H19M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M17,10H7V12H17V10Z" />
+                  </svg>1970-1-1
+                </div>
             </div>
         </div>
         <foot :show='show'></foot>
