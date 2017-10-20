@@ -13,49 +13,53 @@
 
 <section id="summary">
 	<h1>Summary</h1>
-	<p>我是一个前端,此模板来自http://lea.verou.me/，<b>under building</b>
+	<p>我是一个半路出家的前端。之前从事高(ku)大(bi)上的造船业，有着成为海贼王的梦想。工作中渐渐发现编程才是我想做的事。于是去年6月份(2016)开始从《dive into html》和 hello world 开始看起，大概有半年时间，处于一种痛苦，焦虑，快乐交织在一起的状态。现在在一家创业公司做前端。
 	</p>
 </section>
 
 <section id="work-experience">
 	<h1>Work experience</h1>
-
-	<h2>Industry</h2>
 	<ol class="timeline">
 		<li>
-			<p class="date">2012–2013</p>
-			<p>Developer Relations  • <a href="http://w3.org">W3C/MIT</a></p>
-			<p class="note">Educating web professionals about open web standards and facilitating community input for W3C specifications under development.</p>
+			<p class="date">2015.8-2017.3</p>
+			<p>在某船厂担任助理工程师</a></p>
+			<p class="note">从事生产计划的编排和跟踪，物料管理相关工作,由于现场跑的比较多，get到了吃苦耐劳的精神</p>
 		</li>
 		<li>
-			<p class="date">2011–2012<br>2013-2014</p>
-			<p>Speaker, author • <a href="http://lea.verou.me">lea.verou.me</a></p>
-			<p class="note">Speaking, writing, consulting, corporate training & workshops on open web standards.</p>
-		</li>
-		<li>
-			<p class="date">2008–2011</p>
-			<p>Co-founder, lead web-developer &amp; designer • <a href="http://fresset.gr">Fresset Ltd</a></p>
-			<p class="note">Created the successful Greek community <a href="http://e-steki.gr">e-steki.gr</a>, which regularly received over 500,000 visits and 2,500,000 pageviews per month.</p>
-		</li>
-	</ol>
-
-	<h2>Academic</h2>
-	<ol class="timeline">
-		<li>
-			<p class="date">2014-Present</p>
-			<p>Research Assistant • <a href="http://mit.edu">Massachusetts Institute of Technology (MIT)</a></p>
-		</li>
-		<li>
-			<p class="date">2010–2012</p>
-			<p>Teaching Assistant • <a href="http://aueb.gr">Athens University of Economics and Business</a></p>
-			<p class="note">Co-designed every aspect of the “Web Technologies and Programming” 4th year undergraduate course, including syllabus and coursework, taught the labs, guest lectured the CSS parts. [<a href="http://lea.verou.me/2010/07/organizing-a-university-course-on-modern-web-development/">Details</a>]</p>
+			<p class="date">2017.3-2017.10</p>
+			<p>前端@薪趣科技</a></p>
+			<p class="note">为一个ERP系统开放前端界面及后台接口，期间完成了一个编辑表格的jQuery插件<a href='https://github.com/imgss/table'>jQuery-table</a></p>
 		</li>
 	</ol>
 </section>
 
+<section id="technical-skills">
+	<h1>Technical skills</h1>
+	<ul>
+		<li><b>CSS,CSS3</b><p>盒模型,常用布局(flex,float,table)，transition，animation</p></li>
+		<li><b>JavaScript (ES6), DOM APIs,HTML5相关API</b>
+			<p>History<b class='space'>·</b>Formdata<b class='space'>·</b>localStorage<b class='space'>·</b>FileReader<b class='space'>·</b>sessionStorage...</p>
+			</li>
+		<li><b>jQuery APIs</b>
+			<p>开源一个jQuery插件jQuery-table</p></li>
+		<li><b>Vue</b> <p>用Vue全家桶完成个人博客FUN</p></li>
+		<li><b>Node.js</b>
+			<p>掌握node常用原生模块的使用</p>
+			<p>开源小项目greenDot,技术栈Express，mongoDB，Pug</p>
+			<p>掌握npm，git</p>
+		</li>
+	</ul>
+	<p>ps:熟练使用photoshop</p>
+</section>
 
+<section id="interests">
+	<h1>Professional interests</h1>
+	<p>爱编程<b class='space'>·</b>
+	爱摄影<b class='space'>·</b> 爱电影<b class='space'>·</b>
+	爱独处</p>
+</section>
 <footer>
-	<p>References are available upon request.</p>
+	<p>模板来自<a href='http://lea.verou.me/'>http://lea.verou.me/</a>，<b>under building</b></p>
 </footer>
 </article>
 </template>
@@ -75,7 +79,9 @@ export default {
 h1, h2, .date {
 	font: small-caps normal 100% Constantia, 'Palatino Linotype', Palatino, Georgia, serif;
 }
-
+.space {
+	margin: 0 2%
+}
 h1,
 header > h1 > span,
 header > ul > li:before {
@@ -88,7 +94,7 @@ header > ul > li:before {
 
 * { margin:0; }
 
-html {
+#app {
 	background: #9BA2B0;
 	font-size: 14px;
 }
