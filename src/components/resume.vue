@@ -37,26 +37,35 @@
 	<h1>Technical skills</h1>
 	<ul>
 		<li><b>CSS,CSS3</b><p>盒模型,常用布局(flex,float,table)，transition，animation</p></li>
-		<li><b>JavaScript (ES6), DOM APIs,HTML5相关API</b>
+		<li><b>JavaScript (ES5/6), DOM APIs,HTML5相关API</b>
 			<p>History<b class='space'>·</b>Formdata<b class='space'>·</b>localStorage<b class='space'>·</b>FileReader<b class='space'>·</b>sessionStorage...</p>
 			</li>
 		<li><b>jQuery APIs</b>
+			<p>熟练使用jQuery API</p>
 			<p>开源一个jQuery插件jQuery-table</p></li>
-		<li><b>Vue</b> <p>用Vue全家桶完成个人博客FUN</p></li>
+		<li><b>Vue</b> 
+			<p>熟练掌握Vue Vue-router VueX Vue-cli</p>
+			<p>用Vue全家桶完成个人博客FUN</p>
+		</li>
 		<li><b>Node.js</b>
 			<p>掌握node常用原生模块的使用</p>
 			<p>开源小项目greenDot,技术栈Express，mongoDB，Pug</p>
 			<p>掌握npm，git</p>
 		</li>
+		<li><b>PhotoShop</b>
+			<p>熟练使用ps进行常用操作</p>
+		</li>
 	</ul>
-	<p>ps:熟练使用photoshop</p>
 </section>
 
 <section id="interests">
 	<h1>Professional interests</h1>
 	<p>爱编程<b class='space'>·</b>
-	爱摄影<b class='space'>·</b> 爱电影<b class='space'>·</b>
+	爱拍照<b class='space'>·</b> 爱电影<b class='space'>·</b>
 	爱独处</p>
+		<p>github<b class='space'>·</b>
+	instagram<b class='space'>·</b> douban<b class='space'>·</b>
+	alone</p>
 </section>
 <footer>
 	<p>模板来自<a href='http://lea.verou.me/'>http://lea.verou.me/</a>，<b>under building</b></p>
