@@ -54,7 +54,16 @@ spa blog，hash router(不怕~F5~)
 
 ## 截图
 
+* 切换上一篇，下一篇
+![上一篇，下一篇](https://github.com/imgss/FUN/blob/master/img/blog.gif?raw=true)
 
+* 从文章页到索引页
+![文章页到索引页](https://github.com/imgss/FUN/blob/master/img/blog2.gif?raw=true)
+
+* 响应标签
+![文章页到索引页](https://github.com/imgss/FUN/blob/master/img/blog4.gif?raw=true)
+
+* [更多](https://imgss.github.io)
 
 ## 运行
 
