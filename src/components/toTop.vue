@@ -1,6 +1,6 @@
 <template>
     <div  class="demo-up" v-show='show'>
-        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="javascript:void 0" title="go top" role="button">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" href="javascript:void 0" title="go top" role="button">
             <i class="material-icons md-48" role="presentation">arrow_back</i>
             <span class="mdl-button__ripple-container">
             <span class="mdl-ripple"></span>
