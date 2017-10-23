@@ -10,9 +10,9 @@ spa blog，hash router(不怕~F5~)
 
 >　`仓库A` == md(axios) ==> `FUN`== (md) markdown-it (html) ==> html展示
 
-1. 在`仓库A`中存放一个索引json,描述了仓库中md博客的信息，还有一堆`md`文件，是文章文件. 将文章仓库https://github.com/imgss/mdblog
+1. 在`仓库A`中存放一个索引json,由[一个js文件](https://github.com/imgss/FUN_)生成，json描述了仓库中md博客的信息，还有一堆`md`文件，是文章文件. 文章仓库https://github.com/imgss/mdblog
 
-2. FUN通过获取index.json得到`md文件的信息`，当点击界面上的文章简介时，请求md文件，转换成html并展示出来
+2. FUN首先获取index.json,然后通过获取index.json得到文章的url,描述等信息，当点击界面上的文章简介时，axios向github请求对应的md文件，经过marked转换成html并展示在页面上
 
 ## 配置
   在`src/config.json`中配置你自己的md文件根目录，获得自己的
@@ -50,7 +50,11 @@ spa blog，hash router(不怕~F5~)
 
 8. 加入分享？？
 
-9. 实现转载功能
+9. 实现转载功能（未实现）
+
+## 截图
+
+
 
 ## 运行
 
