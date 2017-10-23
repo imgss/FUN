@@ -60,8 +60,9 @@ spa blog，hash router(不怕~F5~)
 * 从文章页到索引页
 ![文章页到索引页](https://github.com/imgss/FUN/blob/master/img/blog2.gif?raw=true)
 
-* 响应标签
-![文章页到索引页](https://github.com/imgss/FUN/blob/master/img/blog4.gif?raw=true)
+* 各标签下的文章
+
+![各标签下的文章](https://github.com/imgss/FUN/blob/master/img/blog4.gif?raw=true)
 
 * [更多](https://imgss.github.io)
 
