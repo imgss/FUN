@@ -47,13 +47,14 @@
               <!--文章-->
               <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
               <p class='article' id = "article" v-html='post'></p>
+              <comment></comment>
               </div>
 
             </div>
 
           </div>
         </transition>
-                  <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+          <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
             <a @click='toAricle("prev")' class="demo-nav__button">
               <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation" data-upgraded=",MaterialButton,MaterialRipple">
                 <i class="material-icons">arrow_back</i>
@@ -90,6 +91,7 @@ import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 import foot from './footer'
 import {root} from '../config.json'
+import comment from './comment'
 let md = new MarkdownIt({
   html: true,
   highlight: function (str, lang) {
@@ -220,7 +222,8 @@ export default {
     toTop,
     tags,
     foot,
-    walker
+    walker,
+    comment
   }
 }
 
