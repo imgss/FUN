@@ -1,9 +1,16 @@
 <template>
-<div class='mdl-layout__container'>
+<div class='mdl-layout__container'>         
+  <div class ='menu' @click="toggleMenu">
+    <i class="material-icons" >&#xE5D2;</i>
+    <ul v-if="menu">
+      <li><a href="https://imgss.github.io/demo" target="_blank">demos</a></li>
+      <li @click="$router.push('/resume')"><a>about</a></li>
+    </ul>
+    </div>
+
   <div class="demo-blog mdl-layout mdl-js-layout">
     <main class="mdl-layout__content">
         <div class='demo-blog__posts mdl-grid tagWrapper' :class='reverse ? "active" : ""' v-if='!this.$route.query.tag'>
-          <div class ='menu'><i class="material-icons">&#xE5D2;</i></div>
           <timeline class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--2-col-desktop' @yearClick = 'getPagesOfYear'></timeline>
           <!--标签云-->
           <tagcloud  class='mdl-card mdl-cell mdl-cell--12-col mdl-cell--4-col-desktop' width='200' height='200' r='80' @tagClick='getPagesOfTag' :tags='tags'></tagcloud>
@@ -65,6 +72,7 @@ export default {
   data () {
     return {
       show: false,
+      menu: false,
       index: 0,
       tags: null,
       noDelay: false,
@@ -161,6 +169,9 @@ export default {
     },
     setCurrent (index) {
       this.$store.commit('setCurrent', index)
+    },
+    toggleMenu () {
+      this.menu = !this.menu
     }
   },
   components: {
@@ -174,14 +185,33 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
+a
+  text-decoration : none
 .menu
-  display:none
   cursor :pointer
-.active .menu
+  z-index: 10
   position :fixed
   display :block
   left:20px
   top:20px
+  i
+    font-size:2em
+  ul
+    list-style : none
+    padding : 10px 0px
+    margin-top: -5px
+    background : #fff
+    font-size: 24px
+    line-height: 30px
+    li
+      padding: 10px 30px
+      border-bottom 1px solid #eee
+      a
+        color #000
+      &:hover
+        background : #888
+        a
+          color : #fff
 svg
   width:25px
   height:20px
