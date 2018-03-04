@@ -61,20 +61,18 @@
 </template>
 
 <script>
-import axios from 'axios'
 import tagcloud from './tagCloud'
 import { mapState } from 'vuex'
 import timer from './timer'
 import foot from './footer'
 import timeline from './timeline'
-import {root, about} from '../config.json'
+import {about} from '../config.json'
 export default {
   data () {
     return {
       show: false,
       menu: false,
       index: 0,
-      tags: null,
       noDelay: false,
       about,
       reverse: false,
@@ -134,20 +132,16 @@ export default {
       return '#' + Math.random().toString(16).slice(2, 8)
     },
     getPages () {
-      axios.get(`${root}index.json`).then((data) => {
-        let articles = data.data.values
-        for (let i = 0, len = articles.length; i < len; i++) {
-          this.colors.push(this.getColor())
-          this.styles.push({transitionDelay: 0.1 * i + 's'})
-        }
-        this.$store.commit('saveColors', this.colors)
-        this.articles = articles
-        this.dates = articles.map(article => article.postDate)
-        this.tags = data.data.allTags
-        this.$store.commit('saveArticles', this.articles)
-        this.$store.commit('saveTags', data.data.allTags)
-        this.show = true
-      })
+      let articles = this.$store.state.articles
+      for (let i = 0, len = articles.length; i < len; i++) {
+        this.colors.push(this.getColor())
+        this.styles.push({transitionDelay: 0.1 * i + 's'})
+      }
+      this.$store.commit('saveColors', this.colors)
+      this.articles = articles
+      this.dates = articles.map(article => article.postDate)
+      this.tags = this.$store.state.allTags
+      this.show = true
     },
     getPagesOfTag (tag = this.$route.query.tag) { // 响应tag点击事件
       !this.noDelay && this.removeDelay()
@@ -248,4 +242,17 @@ svg
 .fade-enter {
   transform: translateX(800px);
 }
+.mdl-card:hover{
+  animation: 2s focus-fade;
+}
+@keyframes focus-fade {
+    from {
+        color: #607d8b;
+        box-shadow: 0 4px 10px 0
+    }
+
+    to {
+    }
+}
+
 </style>

@@ -22,11 +22,13 @@ export default {
     }
   },
   created () {
-    ajax.get(`${root}index.json`).then((data) => {
-      this.$store.commit('saveColors', this.colors)
-      this.$store.commit('saveArticles', this.articles)
-      this.$store.commit('saveTags', data.data.allTags)
-      this.$router.push({name: 'posts'})
+    ajax.get(`${root}index.json`).then((res) => {
+      let data = res.data
+      console.log(data)
+      this.$store.commit('saveArticles', data.values)
+      this.$store.commit('saveTags', data.allTags)
+      setTimeout(() =>
+        this.$router.push({name: 'posts'}), 2000)
     })
   },
   mounted () {
