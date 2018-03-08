@@ -8,8 +8,8 @@ function sessionState () {
 const state = {
   current: 0,
   colors: [],
-  articles: null,
-  tags: null
+  articles: [],
+  tags: []
 }
 let getters = {
   nextArticle: state => {

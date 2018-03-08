@@ -89,13 +89,19 @@ export default {
     hasArticles () {
       return !!this.articles.length
     },
-    ...mapState(['tags', 'articles'])
+    ...mapState(['tags'])
   },
   created () {
     if (!Object.keys(this.$route.query).length) {
       this.getPages()
     } else {
       this.getPagesOfTag()
+    }
+  },
+  beforeMount () {
+    // fix 刷新后不显示文章的bug
+    if (!this.articles.length) {
+      this.$router.push('/')
     }
   },
   mounted () {
@@ -140,7 +146,6 @@ export default {
       this.$store.commit('saveColors', this.colors)
       this.articles = articles
       this.dates = articles.map(article => article.postDate)
-      this.tags = this.$store.state.allTags
       this.show = true
     },
     getPagesOfTag (tag = this.$route.query.tag) { // 响应tag点击事件

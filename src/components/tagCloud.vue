@@ -10,26 +10,20 @@
 </template>
 <script>
 export default{
-  props: ['tags', 'width', 'height', 'r'],
+  props: ['width', 'height', 'r'],
   data () {
     return {
       speedX: Math.PI / 360,
       speedY: Math.PI / 360,
-      textTags: null,
       CX: 0,
       CY: 0
     }
   },
-  mounted () {
-    this.CX = parseInt(getComputedStyle(document.querySelector('svg')).width) / 2
-    this.CY = parseInt(getComputedStyle(document.querySelector('svg')).height) / 2
-  },
-  watch: {
-    'tags': 'getTags',
-    'textTags': 'rotate'
-  },
-  methods: {
-    getTags () {
+  computed: {
+    tags () {
+      return this.$store.state.tags
+    },
+    textTags () {
       console.log(this.tags)
       let tags = []
       let tagsNum = this.tags.length
@@ -46,9 +40,23 @@ export default{
         tag.href = `/tags?tag=${tag.text}`
         tags.push(tag)
       }
-      this.textTags = tags
-    },
+      if (this.tags) {
+        this.rotate()
+      }
+      return tags
+    }
+  },
+  mounted () {
+    this.CX = parseInt(getComputedStyle(document.querySelector('svg')).width) / 2
+    this.CY = parseInt(getComputedStyle(document.querySelector('svg')).height) / 2
+  },
+  watch: {
+    'textTags': 'rotate'
+  },
+  methods: {
+
     rotate () {
+      console.log('rotate', this.speedX, this.speedY)
       setInterval(() => {
         this.rotateX(this.speedX)
         this.rotateY(this.speedY)

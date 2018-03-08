@@ -76,7 +76,8 @@
 <script>
 export default {
   name: 'resume',
-  data: {
+  data () {
+    return {}
   }
 }
 </script>
