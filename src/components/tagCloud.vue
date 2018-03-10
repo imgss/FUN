@@ -15,40 +15,40 @@ export default{
     return {
       speedX: Math.PI / 360,
       speedY: Math.PI / 360,
-      CX: 0,
-      CY: 0
+      textTags: [],
+      CX: 138.5,
+      CY: 150
     }
+  },
+  created () {
+    let tags = []
+    let tagsNum = this.tags.length
+    for (let i = 0; i < tagsNum; i++) {
+      let tag = {}
+      let k = -1 + (2 * (i + 1) - 1) / tagsNum
+      let a = Math.acos(k)
+      let b = a * Math.sqrt(tagsNum * Math.PI)
+      tag.text = this.tags[i]
+      tag.x = this.CX + this.r * Math.sin(a) * Math.cos(b)
+      tag.y = this.CY + this.r * Math.sin(a) * Math.sin(b)
+      tag.z = this.r * Math.cos(a)
+      tag.href = `/tags?tag=${tag.text}`
+      tags.push(tag)
+    }
+    this.textTags = tags
   },
   computed: {
     tags () {
       return this.$store.state.tags
-    },
-    textTags () {
-      console.log(this.tags)
-      let tags = []
-      let tagsNum = this.tags.length
-      console.log(tagsNum)
-      for (let i = 0; i < tagsNum; i++) {
-        let tag = {}
-        let k = -1 + (2 * (i + 1) - 1) / tagsNum
-        let a = Math.acos(k)
-        let b = a * Math.sqrt(tagsNum * Math.PI)
-        tag.text = this.tags[i]
-        tag.x = this.CX + this.r * Math.sin(a) * Math.cos(b)
-        tag.y = this.CY + this.r * Math.sin(a) * Math.sin(b)
-        tag.z = this.r * Math.cos(a)
-        tag.href = `/tags?tag=${tag.text}`
-        tags.push(tag)
-      }
-      if (this.tags) {
-        this.rotate()
-      }
-      return tags
     }
   },
   mounted () {
     this.CX = parseInt(getComputedStyle(document.querySelector('svg')).width) / 2
     this.CY = parseInt(getComputedStyle(document.querySelector('svg')).height) / 2
+    if (this.tags) {
+      console.log('rotate')
+      this.rotate()
+    }
   },
   watch: {
     'textTags': 'rotate'
@@ -56,7 +56,6 @@ export default{
   methods: {
 
     rotate () {
-      console.log('rotate', this.speedX, this.speedY)
       setInterval(() => {
         this.rotateX(this.speedX)
         this.rotateY(this.speedY)
@@ -98,7 +97,7 @@ export default{
 
 <style lang='stylus'>
 #tagCloud
-  min-height: 300px
+  height: 300px
   &:before
     font-size: 5em
     color: #ddd
