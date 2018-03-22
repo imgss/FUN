@@ -1,14 +1,10 @@
 # FUN
 
-> a blog base on vuejs
-
-## target
-
-spa blog，hash router(不怕~F5~)
+> a blog
 
 ## how it works
 
->　`仓库A` == md(axios) ==> `FUN`== (md) markdown-it (html) ==> html展示
+>　博客从另一个放md文件的仓库中请求数据，借助marked渲染成html并显示
 
 1. 在`仓库A`中存放一个索引json,由[一个js文件](https://github.com/imgss/FUN_)生成，json描述了仓库中md博客的信息，还有一堆`md`文件，是文章文件. 文章仓库https://github.com/imgss/mdblog
 
