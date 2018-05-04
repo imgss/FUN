@@ -3,7 +3,7 @@
   <div class ='menu' @click="toggleMenu">
     <i class="material-icons" >&#xE5D2;</i>
     <ul v-if="menu">
-      <li><a href="https://imgss.github.io/demo" target="_blank">demos</a></li>
+      <li><a href="/demo" target="_blank">demos</a></li>
       <li @click="$router.push('/resume')"><a>about</a></li>
     </ul>
     </div>
