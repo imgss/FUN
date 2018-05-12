@@ -5,6 +5,7 @@
     <ul v-if="menu">
       <li><a href="/demo" target="_blank">demos</a></li>
       <li @click="$router.push('/resume')"><a>about</a></li>
+      <li @click="$router.push('/reprint')"><a>转载</a></li>
     </ul>
     </div>
 

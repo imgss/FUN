@@ -30,6 +30,11 @@
 			<p>前端@薪趣科技</a></p>
 			<p class="note">为一个ERP系统开放前端界面及后台接口，期间完成了一个编辑表格的jQuery插件<a href='https://github.com/imgss/table'>jQuery-table</a></p>
 		</li>
+		<li>
+			<p class="date">2017.12-至今</p>
+			<p>前端@牛牛成长</a></p>
+			<p class="note">牛牛成长小程序、服务号，公司内部CMS系统维护等</p>
+		</li>
 	</ol>
 </section>
 
