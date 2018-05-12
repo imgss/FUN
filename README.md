@@ -47,6 +47,7 @@
 8. 加入分享？？
 
 9. 实现转载功能（未实现）
+  如： 转载`https://raw.githubusercontent.com/AllThingsSmitty/css-protips/master/translations/zh-CN/README.md`
 
 ## 截图
 
