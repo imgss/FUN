@@ -12,7 +12,6 @@
 
 <script>
 import loading from '@/components/loading/2'
-import ajax from 'axios'
 import {root} from '../config.json'
 export default {
   name: 'hello',
@@ -22,7 +21,7 @@ export default {
     }
   },
   created () {
-    ajax.get(`${root}index.json`).then((res) => {
+    this.ajax.get(`${root}index.json`).then((res) => {
       let data = res.data
       console.log(data)
       this.$store.commit('saveArticles', data.values)

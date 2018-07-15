@@ -29,6 +29,10 @@ export default {
 </script>
 
 <style lang='stylus'>
+@media screen and (max-width: 375px)
+  #toc
+    display: none
+
 .demo-blog--blogpost div.demo-back
   position:fixed
 #toc

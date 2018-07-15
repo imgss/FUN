@@ -4,12 +4,14 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './vuex/store'
+import ajax from 'axios'
 import './assets/styles.css'
 import scrollIntoView from 'scroll-into-view'
 import './assets/mdl.grey.orange.min.css'
 import './assets/atom-one-dark.css'
 
 Vue.config.productionTip = false
+Vue.prototype.ajax = ajax
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

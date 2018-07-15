@@ -22,7 +22,7 @@
           <div  class='mdl-card mdl-cell mdl-cell--8-col mdl-cell--12-col-desktop meta '><h1>{{this.$route.query.tag}}</h1></div>
         </div>
         <div class='demo-blog__posts mdl-grid'>
-          <transition-group name='fade' appear @after-appear="removeDelay" v-if='hasArticles'>
+          <transition-group name='fade' appear @after-appear="removeDelay" v-if='hasArticles' style="width: 100%">
             <!--文章摘要-->
             <div class="mdl-card mdl-cell mdl-cell--12-col-desktop mdl-cell--8-col" 
               :style='styles[index]' 
@@ -185,6 +185,13 @@ export default {
 </script>
 
 <style scoped lang='stylus'>
+.mdl-card__supporting-text
+  margin: 0 auto
+@media screen and (max-width: 400px)
+  .mdl-card__title
+    font-size: 18px!important
+  .mdl-card__supporting-text
+    font-size 14px!important
 a
   text-decoration : none
 .menu

@@ -265,6 +265,7 @@ nav.demo-nav
   text-align: left
   max-width:750px
   margin: 10px
+  width: calc(100% - 32px)
   & blockquote
     &:before,&:after
       content:''
