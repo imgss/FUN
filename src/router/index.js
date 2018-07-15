@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Posts from '@/components/Posts'
-import welcome from '@/components/welcome'
-import resume from '@/components/resume'
-const Article = resolve => require(['@/components/article'], resolve)
+import Posts from '@/pages/Posts'
+import welcome from '@/pages/welcome'
+import resume from '@/pages/resume'
+const Article = resolve => require(['@/pages/article'], resolve)
 Vue.use(Router)
 
 export default new Router({

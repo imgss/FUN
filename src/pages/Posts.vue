@@ -62,11 +62,11 @@
 </template>
 
 <script>
-import tagcloud from './tagCloud'
+import tagcloud from '@/components/tagCloud'
 import { mapState } from 'vuex'
-import timer from './timer'
-import foot from './footer'
-import timeline from './timeline'
+import timer from '@/components/timer'
+import foot from '@/components/footer'
+import timeline from '@/components/timeline'
 import {about} from '../config.json'
 export default {
   data () {

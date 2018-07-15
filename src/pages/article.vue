@@ -89,9 +89,9 @@ import walker from '@/components/walker'
 import tags from '@/components/tags'
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
-import foot from './footer'
+import foot from '@/components/footer'
 import {root} from '../config.json'
-import comment from './comment'
+import comment from '@/components/comment'
 let md = new MarkdownIt({
   html: true,
   highlight: function (str, lang) {
